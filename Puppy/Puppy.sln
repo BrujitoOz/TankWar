@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Puppy", "Puppy\Puppy.vcxproj", "{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Debug|x64.ActiveCfg = Debug|x64
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Debug|x64.Build.0 = Debug|x64
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Debug|x86.ActiveCfg = Debug|Win32
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Debug|x86.Build.0 = Debug|Win32
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Release|x64.ActiveCfg = Release|x64
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Release|x64.Build.0 = Release|x64
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Release|x86.ActiveCfg = Release|Win32
+		{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7392B6AB-EF67-43A7-B2BC-6D956A917408}
+	EndGlobalSection
+EndGlobal
