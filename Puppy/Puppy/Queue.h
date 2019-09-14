@@ -9,6 +9,7 @@ public:
 	LinkedQueue() : Size(0), Front(nullptr), Back(nullptr) {}
 	~LinkedQueue() {
 		delete Front, Back;
+		
 	}
 	void push(int value);
 	int pop();

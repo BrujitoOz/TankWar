@@ -1,0 +1,6 @@
+﻿  MyForm.cpp
+d:\algoritmos\tp_aye-master\puppy\puppy\base.h(63): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: vea la declaración de 'strcpy'
+d:\algoritmos\tp_aye-master\puppy\puppy\myform.cpp(4): warning C4829: Parámetros posiblemente incorrectos para la función main. Utilice 'int main(Platform::Array<Platform::String^>^ argv)'
+  Items.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Puppy.vcxproj -> D:\algoritmos\TP_AyE-master\Puppy\x64\Debug\Puppy.exe

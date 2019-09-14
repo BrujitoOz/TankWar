@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Enemigo.h"
 #include "Disco.h"
+#include "Items.h"
+
 enum direccion { arriba, abajo, izquierda, derecha, ninguno };
 class Juego {
 	Player* player;

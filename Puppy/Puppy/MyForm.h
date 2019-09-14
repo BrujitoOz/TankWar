@@ -12,7 +12,7 @@ namespace Puppy {
 	/// </summary>
 	public ref class MyForm : public Form {
 		Juego* objjuego;
-		Image^ imgplayer = gcnew Bitmap("tank.jpg");
+		Image^ imgplayer = gcnew Bitmap("tanque.png");
 		Image^ imgfondo = gcnew Bitmap("orionvalle.jpg");
 	public:
 		MyForm(void) {

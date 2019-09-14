@@ -34,4 +34,22 @@ public:
 	int GetValueFirst() {
 		return Head->GetVal();
 	}
+	void AddEnd(int v)
+	{
+		Node* NodeAux = new Node(v);
+		NodeAux->SetNext(nullptr);
+		if (Size == 0) NodeAux = Head;
+		else
+		{
+
+		}
+
+
+	}
+	void DeleteEnd() {
+		if (Size > 0)
+		{
+
+		}
+	}
 };
