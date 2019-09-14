@@ -38,7 +38,7 @@ int LinkedQueue::pop() {
 		Size--;
 	}
 	else {
-		//error
+		//erro
 	}
 	return value;
 }
