@@ -1,9 +1,10 @@
 #pragma once
 // esta clase supuestamente sera para construir las torres enemigas
 #include "Node.h"
-class LinkedStack {
-	// Solo usamos puntero a top que seria el plato(si tomamos el ejemplo de platos como pilas) que esta encima de todos
-	Node* Top;
+template <class T> class LinkedStack {
+	
+private: // Solo usamos puntero a top que seria el plato(si tomamos el ejemplo de platos como pilas) que esta encima de todos
+	Node<T>* Top;
 	int Size; // cantidad actuali de la pila
 public:
 	LinkedStack() : Top(nullptr), Size(0) {}
@@ -11,7 +12,7 @@ public:
 		delete Top;
 	}
 	void push(int v) {
-		Node* NodeAux = new Node(v);
+		Node<T>* NodeAux = new Node<T>(v);
 		if (empty()) 
 			Top = NodeAux; // si la pila esta vacia top apuntara al primer y unico nodo
 		else {

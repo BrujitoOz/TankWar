@@ -1,10 +1,10 @@
 #pragma once
 #include "Node.h"
-class LinkedQueue {
-	
+template <class T> class LinkedQueue {
+protected: 
 	int Size;
-	Node* Front;
-	Node* Back;
+	Node<T>* Front;
+	Node<T>* Back;
 public:
 	LinkedQueue() : Size(0), Front(nullptr), Back(nullptr) {}
 	~LinkedQueue() {
@@ -18,8 +18,10 @@ public:
 	int size();
 	bool empty();
 };
-void LinkedQueue::push(int value) {
-	Node* nodeaux = new Node(value);
+
+template <class T>
+void LinkedQueue<T>::push(int value) {
+	Node<T>* nodeaux = new Node<T>(value);
 	if (Size == 0) {
 		Front = nodeaux;
 		Back = nodeaux;
@@ -30,10 +32,11 @@ void LinkedQueue::push(int value) {
 	}
 	Size++;
 }
-int LinkedQueue::pop() {
+template <class T>
+int LinkedQueue<T>::pop() {
 	int value = -1;
 	if (!empty()) {
-		Node* nodeaux = Front; 
+		Node<T>* nodeaux = Front;
 		value = nodeaux->GetVal(); 
 		Front = nodeaux->GetNext(); 
 		Size--;
@@ -43,15 +46,19 @@ int LinkedQueue::pop() {
 	}
 	return value;
 }
-int LinkedQueue::front() {
+template <class T>
+int LinkedQueue<T>::front() {
 	return Front->GetVal();
 }
-int LinkedQueue::back() {
+template <class T>
+int LinkedQueue<T>::back() {
 	return Back->GetVal();
 }
-int LinkedQueue::size() {
+template <class T>
+int LinkedQueue<T>::size() {
 	return Size;
 }
-bool LinkedQueue::empty() {
+template <class T>
+bool LinkedQueue<T>::empty() {
 	return Size == 0;
 }

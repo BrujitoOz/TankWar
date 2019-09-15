@@ -144,7 +144,6 @@
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Items.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>

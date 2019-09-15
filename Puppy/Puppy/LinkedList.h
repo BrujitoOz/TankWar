@@ -1,8 +1,9 @@
 #pragma once
 #include "Node.h"
 using namespace std;
-class LinkedList {
-	Node* Head;
+template <class T> class LinkedList {
+protected: 
+	Node<T>* Head;
 	int Size;
 public:
 	LinkedList() : Head(nullptr), Size(0) {}
@@ -15,8 +16,8 @@ public:
 	bool empty() {
 		return Size == 0;
 	}
-	void AddFirst(int v) {
-		Node* NodeAux = new Node(v);
+	void AddFirst(T v) {
+		Node<T>* NodeAux = new Node<T>(v);
 		NodeAux->SetNext(Head);
 		if (NodeAux != nullptr) {
 			Head = NodeAux;
@@ -25,31 +26,44 @@ public:
 	}
 	void DeleteFirst() {
 		if (Size > 0) {
-			Node* NodeAux = Head;
+			Node<T>* NodeAux = Head;
 			Head = Head->GetNext();
 			delete NodeAux;
 			Size-=1;
 		}
 	}
-	int GetValueFirst() {
+	T GetValueFirst() {
 		return Head->GetVal();
 	}
-	void AddEnd(int v)
+	T GetTheLast() {
+		Node<T> *p = Head;
+		while (p->GetNext()!nullptr) p = p->SetNext();
+		return p;
+	}
+	void AddEnd(T v)
 	{
-		Node* NodeAux = new Node(v);
-		NodeAux->SetNext(nullptr);
-		if (Size == 0) NodeAux = Head;
-		else
-		{
-
-		}
-
-
+		Node<T>* last = this->GetTheLast();
+		last->SetNext(new Node<T>(v));
+		Size++;
 	}
 	void DeleteEnd() {
-		if (Size > 0)
-		{
-
+		if (Size > 0) {
+			Node<T>* NodeAux = Head;
+			
+			while (NodeAux->GetNext()->GetNext() != nullptr)
+				NodeAux = NodeAux->SetNext();
+			Node<T>* NodeAux2 = NodeAux->GetNext();
+			NodeAux->SetNext(NodeAux2->SetNext());
+			delete NodeAux2;
+			Size --;
 		}
+	}
+	void AddPos(Node<T> previus, T v)
+	{
+		Node<T>* NodeAux;
+		NodeAux = new Node<T>(v);
+		NodeAux->SetNext(previus->SetNext());
+		previus->SetNext(NodeAux);
+		Size++;
 	}
 };
