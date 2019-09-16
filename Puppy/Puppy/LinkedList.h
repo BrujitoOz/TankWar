@@ -1,4 +1,5 @@
 #pragma once
+#include "Base.h"
 #include "Node.h"
 using namespace std;
 template <class T> class LinkedList {
@@ -65,5 +66,13 @@ public:
 		NodeAux->SetNext(previus->SetNext());
 		previus->SetNext(NodeAux);
 		Size++;
+	}
+	void MoveAll(System::Drawing::Graphics^ g)
+	{
+		Node<T> *aux = Head;
+		for (int i = 0; i < Size; i++)
+		{
+			aux->GetNext
+		}
 	}
 };

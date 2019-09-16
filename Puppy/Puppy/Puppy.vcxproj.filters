@@ -51,9 +51,21 @@
     <ClInclude Include="Items.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListDisco.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListDisco.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -134,6 +134,8 @@
     <ClInclude Include="Items.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="ListController.h" />
+    <ClInclude Include="ListDisco.h" />
     <ClInclude Include="Monedas.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
@@ -144,6 +146,8 @@
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ListController.cpp" />
+    <ClCompile Include="ListDisco.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
