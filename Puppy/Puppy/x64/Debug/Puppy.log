@@ -1,3 +1,0 @@
-﻿  ListDisco.cpp
-d:\algoritmos\tp_aye-master\puppy\puppy\listdisco.h(5): error C2955: 'LinkedList': el uso de clase plantilla requiere una lista de argumentos de plantilla
-  d:\algoritmos\tp_aye-master\puppy\puppy\linkedlist.h(4): note: vea la declaración de 'LinkedList'
