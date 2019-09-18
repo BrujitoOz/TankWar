@@ -5,5 +5,5 @@ template <class T>class ListDisco : public ListController {
 
 public:
 	ListDisco() = default;
-	~ListDisco() = default;
+	~ListDisco() = default;;
 };
