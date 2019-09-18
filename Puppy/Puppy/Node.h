@@ -1,14 +1,11 @@
 #pragma once
- template <class T> class Node {
- protected:
-	 T val;
+template <class T> class Node {
+	 T ElementOfNode;
 	 Node<T>* next;
 public:
-	//T val;
-	//Node* next;
-	Node(T val, Node<T>* next = nullptr) : val(val), next(next) {}
+	Node(T ElementOfNode, Node<T>* next = nullptr) : ElementOfNode(ElementOfNode), next(next) {}
 	T GetVal() {
-		return val;
+		return ElementOfNode;
 	}
 	void SetNext(Node* next) {
 		this->next = next;

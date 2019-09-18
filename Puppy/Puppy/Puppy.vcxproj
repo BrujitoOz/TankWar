@@ -146,8 +146,6 @@
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ListController.cpp" />
-    <ClCompile Include="ListDisco.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
