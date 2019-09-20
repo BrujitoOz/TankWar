@@ -24,7 +24,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Puppy</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -44,7 +44,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bala.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Disco.h" />
     <ClInclude Include="Enemigo.h" />
@@ -142,7 +143,9 @@
     </ClInclude>
     <ClInclude Include="Node.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Queue.h" />
+    <ClInclude Include="LinkedQueue.h" />
+    <ClInclude Include="QueueBala.h" />
+    <ClInclude Include="QueueController.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>

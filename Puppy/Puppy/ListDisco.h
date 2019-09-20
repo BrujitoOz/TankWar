@@ -1,9 +1,9 @@
 #pragma once
 #include "ListController.h"
-#include "Disco.h"
-template <class T>class ListDisco : public ListController {
-
+template <typename T>
+class ListDisco : public ListController<T> {
 public:
 	ListDisco() = default;
-	~ListDisco() = default;;
+	~ListDisco() = default;
+	
 };

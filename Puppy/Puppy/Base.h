@@ -10,9 +10,9 @@ protected:
 	bool Eliminar;
 	char* PathIMG;
 public:
-	Base() = default;
-	~Base() = default;
-	void SetX(int X) { this->x = x; }
+	Base() { ; }
+	~Base() { ; }
+	void SetX(int x) { this->x = x; }
 	void SetY(int y) { this->y = y; }
 	void SetDX(int dx) { this->dx = dx; }
 	void SetDY(int dy) { this->dy = dy;  }
