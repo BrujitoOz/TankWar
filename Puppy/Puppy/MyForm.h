@@ -13,7 +13,9 @@ namespace Puppy {
 	public ref class MyForm : public Form {
 		Juego* objjuego;
 		Image^ imgplayer = gcnew Bitmap("tanque.png");
-		Image^ imgfondo = gcnew Bitmap("orionvalle.jpg");
+		Image^ imgfondo = gcnew Bitmap("fondov2.jpg");
+		Image^ imgheli = gcnew Bitmap("Helicop.png");
+		Image^ imgtorret = gcnew Bitmap("Torreta.jpg");
 	public:
 		MyForm(void) {
 			InitializeComponent();
@@ -73,7 +75,7 @@ namespace Puppy {
 			BufferedGraphicsContext^ espacioBuffer = BufferedGraphicsManager::Current;
 			BufferedGraphics^ buffer = espacioBuffer->Allocate(g, this->ClientRectangle);
 			buffer->Graphics->Clear(Color::White);
-			objjuego->Run(buffer->Graphics, imgplayer, imgfondo);
+			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret);
 			buffer->Render(g);
 			delete espacioBuffer;
 			delete g;

@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "Base.h"
 class Disco : public Base {
 public:
@@ -16,4 +16,4 @@ void Disco::Draw(Graphics^ g) {
 		g->DrawEllipse(p, x, y, l, a);
 		g->FillEllipse(brocha, x, y, l, a);
 	}
-}
+}*/
