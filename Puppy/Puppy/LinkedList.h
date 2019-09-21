@@ -32,7 +32,7 @@ public:
 			Node<T>* NodeAux = Head;
 			Head = Head->GetNext();
 			delete NodeAux;
-			Size-=1;
+			Size--;
 		}
 	}
 	T GetValueFirst() {
@@ -49,12 +49,38 @@ public:
 		last->SetNext(new Node<T>(v));
 		Size++;
 	}
+	void DeletePos(unsigned int pos) {
+		if (pos >= 0 && pos <= Size) {
+			if (pos == 0)
+				DeleteFirst();
+			else if (pos > 0 && pos < Size) {
+				Node<T>* NodePos = GetNode(pos);
+				Node<T>* NodeAux = GetNode(pos - 1);
+				NodeAux->SetNext(NodePos->GetNext());
+				delete NodePos;
+				Size -= 1;
+			}
+			else if (pos == Size)
+				DeleteEnd();
+		}
+	}
+	Node* GetNode(int index) { // iterador
+		unsigned int cont = 0;
+		Node<T>* NodeAux = Head;
+		while (cont < index) {
+			NodeAux = NodeAux->GetNext();
+			cont += 1;
+		}
+		return NodeAux;
+	}
+
+
+
 	void DeleteEnd() {
 		if (Size > 0) {
 			Node<T>* NodeAux = Head;
-			
-			while (NodeAux->GetNext()->GetNext() != nullptr)
-				NodeAux = NodeAux->SetNext();
+			while (NodeAux->GetNext() != nullptr)
+				NodeAux = NodeAux->GetNext();
 			Node<T>* NodeAux2 = NodeAux->GetNext();
 			NodeAux->SetNext(NodeAux2->SetNext());
 			delete NodeAux2;
