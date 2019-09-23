@@ -5,18 +5,29 @@ class Bala : // clase bala tiene los atributos de la clase Items
 {
 private:
 	int tipo, r, ge, b;
+	int IndiceColumna, IndiceFila, FilaMax, ColumnaMax;
 public:
 	Bala();
 	void Cambiar_tipo(int nuevo);
 	int Retornar_tipo();
 	void Conf_tipo();
-	void Dibujar(System::Drawing::Graphics^ g);
+	void Dibujar(Graphics^ g, Image^ img);
 	bool Mover(System::Drawing::Graphics^ g);
+	void SetIndiceColumna(int IndiceColumna);
+	void SetIndiceFila(int IndiceFila);
+	void SetColumnaMax(int ColumnaMax);
+	void SetFilaMax(int FilaMax);
+	int GetIndiceColumna();
+	int GetIndiceFila();
+	int GetFilaMax();
+	int GetColumnaMax();
 	~Bala();
 };
 
 Bala::Bala()
 {
+	SetPathIMG("balas.png");
+	IndiceColumna = IndiceFila = 0;
 }
 Bala::~Bala()
 {
@@ -29,35 +40,64 @@ int Bala::Retornar_tipo()
 {
 	return tipo;
 }
+void Bala::SetIndiceColumna(int IndiceColumna) {
+	this->IndiceColumna = IndiceColumna;
+}
+void Bala::SetIndiceFila(int IndiceFila) {
+	this->IndiceFila = IndiceFila;
+}
+void Bala::SetColumnaMax(int ColumnaMax) {
+	this->ColumnaMax = ColumnaMax;
+}
+void Bala::SetFilaMax(int FilaMax) {
+	this->FilaMax = FilaMax;
+}
+int Bala::GetIndiceColumna() {
+	return IndiceColumna;
+}
+int Bala::GetIndiceFila() {
+	return IndiceFila;
+}
+int Bala::GetFilaMax() {
+	return FilaMax;
+}
+int Bala::GetColumnaMax() {
+	return ColumnaMax;
+}
 void Bala::Conf_tipo()
 {
 	if (tipo == 1)
 	{
-		r = 0; ge = 255; b = 0;
+		IndiceColumna = 1;
 	}
 	if (tipo == 2)
 	{
-		r = 255; ge = 0; b = 255;
+		IndiceColumna = 2;
 	}
 
 	if (tipo == 3)
 	{
-		r = 255; ge = 255; b = 255;
+		IndiceColumna = 0;
 	}
 	if (tipo == 4)
 	{
-		r = 0; ge = 255; b = 255;
+		IndiceColumna = 3;
 	}
 }
-void Bala::Dibujar(System::Drawing::Graphics^ g) {
+void Bala::Dibujar(Graphics^ g, Image^ img2) {
 	Conf_tipo();
-	System::Drawing::Color micolor = System::Drawing::Color::FromArgb(r, ge, b);
+	/*System::Drawing::Color micolor = System::Drawing::Color::FromArgb(r, ge, b);
 	System::Drawing::SolidBrush^ brocha = gcnew System::Drawing::SolidBrush(micolor);
 	System::Drawing::Pen^ p = gcnew System::Drawing::Pen(micolor);
 	if (x > 0 && y > 0) {
 		g->DrawEllipse(p, x, y, l, a);
 		g->FillEllipse(brocha, x, y, l, a);
-	}
+	}*/
+	l = img2->Height / FilaMax;
+	a = img2->Width / ColumnaMax;
+	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
+	Rectangle Destino = Rectangle(x, y, a, l);
+	g->DrawImage(img2, Destino, porcionUsar, GraphicsUnit::Pixel);
 }
 
 bool Bala::Mover(System::Drawing::Graphics^ g) {
@@ -68,7 +108,8 @@ bool Bala::Mover(System::Drawing::Graphics^ g) {
 	y += dy;
 	if (y + dy < g->VisibleClipBounds.Top || y + dy + l > g->VisibleClipBounds.Bottom)
 		return true;
-
+	else 
+	return false;
 
 
 }

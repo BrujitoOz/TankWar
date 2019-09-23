@@ -1,10 +1,12 @@
 #pragma once
 #include "Player.h"
 #include "Enemigo.h"
+//#include "Disco.h"
 #include "Items.h"
 #include "LinkedList.h"
 #include "Heli.h"
 #include "Torreta.h"
+#include "Bala.h"
 
 enum direccion { arriba, abajo, izquierda, derecha, ninguno };
 class Juego {
@@ -20,11 +22,11 @@ public:
 	Juego();
 	~Juego();
 	void Init();
-	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret);
+	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret, Image^imgbalas, Image^ imgitems);
 	void Mover_player(direccion movimiento, Graphics^ g);
 	void Mover_Enemigos(Graphics^ g);
 	bool Colision(Base* player, Base* disco);
-	void InitEnemigos(int ene);
+	
 	void Disparar(Graphics^ g);
 
 };
@@ -43,10 +45,10 @@ void Juego::Init() {
 	player->SetA(img->Width);
 	player->SetL(img->Height);
 	player->SetColumnaMax(4);
-	player->SetFilaMax(4);
+	player->SetFilaMax(1);
 
 	Torreta* torret;
-	for (int i = 1; i < 7; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		torret = new Torreta();
 		torret->SetX(i*300);
@@ -58,28 +60,16 @@ void Juego::Init() {
 
 	
 }
-void Juego::InitEnemigos(int ene) {
-	Enemigo* aux;
-	for (int i = 0; i < ene ; i++)
-	{
-		aux = new Enemigo();
-		aux->SetX(250);
-		aux->SetY(500);
-		aux->SetDX(14);
-		aux->SetDY(0);
-		aux->SetA(25);
-		aux->SetL(25);
-		enemigos.AddFirst(aux);
-	}
-}
 
-void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret) {
+
+void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret, Image^imgbalas, Image^ imgitems) {
 	g->DrawImage(imgfondo, g->VisibleClipBounds);
-	player->Draw(g, imgplayer);
+	player->Draw(g, imgplayer, imgbalas);
+
 	Items* aux;
 	Heli* heli;
 
-	int random = rand() % 30;
+	int random = rand() % 60;
 	//disco->Draw(g);
 	
 	if (random == 4|| random == 5 || random == 6)
@@ -89,8 +79,8 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		aux->SetX(rand() % 1500);
 		aux->SetY(rand() % 800);
 		aux->SetEliminar(false);
-		aux->SetA(20);
-		aux->SetL(12);
+		aux->SetColumnaMax(7);
+		aux->SetFilaMax(1);
 		aux->Cambiar_tipo(tip);
 		items.AddFirst(aux);
 	}
@@ -98,7 +88,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 	for (Iterator<Items*> aux = items.Begin(); aux != items.End(); aux++)
 	{
 		Items* e = *aux;
-		e->Dibujar(g);
+		e->Dibujar(g, imgitems);
 
 		// se detectan colisiones entre player e items
 		if (!e->GetEliminar() && Colision(player, e))
@@ -133,13 +123,13 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		e->Draw(g, imgheli);
 		e->Move(g);
 
-		if(player->getCurrentBala() != nullptr)
+		/*if(player->getCurrentBala() != nullptr)
 			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
 			{
 				e->SetEliminar(true);
 				puntos++;
 				player->removeCurrentBala();
-			}
+			}*/
 
 	}
 	for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)

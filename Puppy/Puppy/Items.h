@@ -5,20 +5,55 @@ class Items:
 {
 private: 
 	int tipo, r, ge, b;
+	int IndiceColumna, IndiceFila, FilaMax, ColumnaMax;
 public:
 	Items();
+	void SetIndiceColumna(int IndiceColumna);
+	void SetIndiceFila(int IndiceFila);
+	void SetColumnaMax(int ColumnaMax);
+	void SetFilaMax(int FilaMax);
+	int GetIndiceColumna();
+	int GetIndiceFila();
+	int GetFilaMax();
+	int GetColumnaMax();
 	void Cambiar_tipo(int nuevo);
 	int Retornar_tipo();
 	void Conf_tipo();
-	void Dibujar(System::Drawing::Graphics ^ g);
+	void Dibujar(Graphics^ g, Image^ img);
 	~Items();
 };
 
 Items::Items()
 {
+	SetPathIMG("items.png");
+	IndiceColumna = IndiceFila = 0;
 }
 Items::~Items()
 {
+}
+void Items::SetIndiceColumna(int IndiceColumna) {
+	this->IndiceColumna = IndiceColumna;
+}
+void Items::SetIndiceFila(int IndiceFila) {
+	this->IndiceFila = IndiceFila;
+}
+void Items::SetColumnaMax(int ColumnaMax) {
+	this->ColumnaMax = ColumnaMax;
+}
+void Items::SetFilaMax(int FilaMax) {
+	this->FilaMax = FilaMax;
+}
+int Items::GetIndiceColumna() {
+	return IndiceColumna;
+}
+int Items::GetIndiceFila() {
+	return IndiceFila;
+}
+int Items::GetFilaMax() {
+	return FilaMax;
+}
+int Items::GetColumnaMax() {
+	return ColumnaMax;
 }
 void Items::Cambiar_tipo(int nuevo)
 {
@@ -32,30 +67,28 @@ void Items::Conf_tipo()
 {
 	if (tipo == 1)
 	{
-		r = 0; ge = 255; b = 0;
+		IndiceColumna = 0;
 	}
 	if (tipo == 2)
 	{
-		r = 255; ge = 0; b = 255;
+		IndiceColumna = 2;
 	}
 
 	if (tipo == 3)
 	{
-		r = 255; ge = 255; b = 255;
+		IndiceColumna = 3;
 	}
 	if (tipo == 4)
 	{
-		r = 0; ge = 255; b = 255;
+		IndiceColumna = 6;
 	}
 }
-void Items::Dibujar(System::Drawing::Graphics ^ g) {
+void Items::Dibujar(Graphics^ g, Image^ img) {
 	Conf_tipo();
-	System::Drawing::Color micolor = System::Drawing::Color::FromArgb(r, ge, b);
-	System::Drawing::SolidBrush^ brocha = gcnew System::Drawing::SolidBrush(micolor);
-	System::Drawing::Pen ^p = gcnew System::Drawing::Pen(micolor);
-	if (!Eliminar &&  x > 0 && y > 0) {
-		g->DrawEllipse(p, x, y, l, a);
-		g->FillEllipse(brocha, x, y, l, a);
-	}
+	l = img->Height / FilaMax;
+	a = img->Width / ColumnaMax;
+	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
+	Rectangle Destino = Rectangle(x, y, a, l);
+	g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
 }
 //void Items::Dibujar(System::Drawing::Graphics ^ g) {}

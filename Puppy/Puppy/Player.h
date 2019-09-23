@@ -31,13 +31,15 @@ public:
 	void MoveLeft(Graphics^ g);
 
 
-	void Draw(Graphics^ g, Image^ img);
+	void Draw(Graphics^ g, Image^ img, Image^ img2);
 
 	void AddBala(int tipo) {
 		Bala* bala = new Bala();
 		bala->Cambiar_tipo(tipo); // la bala recibe el mismo "tipo" que tiene la clase Items, resultando que ambos tengan el mismo color
-		bala->SetA(14); 
-		bala->SetL(14);
+		//bala->SetA(14); 
+		//bala->SetL(14);
+		bala->SetColumnaMax(4);
+		bala->SetFilaMax(1);
 		balas.push(bala); // se aniade a la cola
 
 	}
@@ -50,7 +52,7 @@ public:
 
 };
 Player::Player() {
-	SetPathIMG("tank.jpg");
+	SetPathIMG("tanques.png");
 	IndiceColumna = IndiceFila = 0;
 	currentBala = nullptr;
 }
@@ -70,67 +72,58 @@ void Player::ShotPlayer() {
 		// se dispara en la direccion segun donde se encontraba apuntando el tanque como indica el sprite
 		if (IndiceFila == 3)
 		{
-			currentBala->SetDX(0);
-			currentBala->SetDY(-10);
+			currentBala->SetDX(15);
+			currentBala->SetDY(15);
 		}
 
 
 		if (IndiceFila == 0)
 		{
 			currentBala->SetDX(0);
-			currentBala->SetDY(10);
+			currentBala->SetDY(20);
 		}
 
-		if (IndiceFila == 1)
+		if (IndiceColumna == 1)
 		{
-			currentBala->SetDX(-10);
-			currentBala->SetDY(0);
+			currentBala->SetDX(-15);
+			currentBala->SetDY(15);
 		}
 
-		if (IndiceFila == 2)
-		{
-			currentBala->SetDX(10);
-			currentBala->SetDY(0);
-		}
-
+		
 	}
 
 }
 void Player::MoveUp(Graphics^ g) {
-	IndiceFila = 3;
+	IndiceFila = 0;
 	dy = -5;
 	if (g->VisibleClipBounds.Top < (y + dy))
 		y = y + dy;
-	IndiceColumna++;
-	if (IndiceColumna == 2)
-		IndiceColumna = 0;
+	IndiceColumna = 0;
+	
 }
 void Player::MoveDown(Graphics^ g) {
 	IndiceFila = 0;
 	dy = 5;
 	if (g->VisibleClipBounds.Bottom > (y + dy + l))
 		y = y + dy;
-	IndiceColumna++;
-	if (IndiceColumna == 2)
-		IndiceColumna = 0;
+	IndiceColumna =0 ;
+	
 }
 void Player::MoveLeft(Graphics^ g) {
-	IndiceFila = 1;
+	IndiceFila = 0;
 	dx = -5;
 	if (g->VisibleClipBounds.Left < (x + dx))
 		x = x + dx;
-	IndiceColumna++;
-	if (IndiceColumna == 2)
-		IndiceColumna = 0;
+	IndiceColumna = 2;
+	
 }
 void Player::MoveRight(Graphics^ g) {
-	IndiceFila = 2;
+	IndiceFila = 0;
 	dx = 5;
 	if (g->VisibleClipBounds.Right > (x + dx + a))
 		x = x + dx;
-	IndiceColumna++;
-	if (IndiceColumna == 2)
-		IndiceColumna = 0;
+	IndiceColumna = 1;
+	
 }
 void Player::SetIndiceColumna(int IndiceColumna) { 
 	this->IndiceColumna = IndiceColumna; 
@@ -156,7 +149,7 @@ int Player::GetFilaMax() {
 int Player::GetColumnaMax() { 
 	return ColumnaMax; 
 }
-void Player::Draw(Graphics^ g, Image^ img) {
+void Player::Draw(Graphics^ g, Image^ img, Image^ img2) {
 	l = img->Height / FilaMax;
 	a = img->Width / ColumnaMax;
 	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
@@ -165,18 +158,19 @@ void Player::Draw(Graphics^ g, Image^ img) {
 	// La funcion dibujar del tanque tambien dibuja sus balas
 	if (currentBala != nullptr)
 	{
-		currentBala->Dibujar(g);
-		bool eliminar = currentBala->Mover(g);
+		currentBala->Dibujar(g, img2);
 
-		if (eliminar)
+	bool eliminar = currentBala->Mover(g);
+
+	if (eliminar)
 		{
-			removeCurrentBala(); // funcion para eliminar el currentbala
+		removeCurrentBala(); // funcion para eliminar el currentbala
 		}
 
 	}
 }
 
-
+	
 void Player::removeCurrentBala() {
 	delete currentBala;
 	currentBala = nullptr;

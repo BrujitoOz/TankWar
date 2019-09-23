@@ -1,46 +1,46 @@
 ﻿  MyForm.cpp
-d:\algoritmos\tp_aye-master\puppy\puppy\base.h(63): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\base.h(63): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: vea la declaración de 'strcpy'
-d:\algoritmos\tp_aye-master\puppy\puppy\juego.h(93): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(88): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
           with
           [
               T=Items *
           ]
-  d:\algoritmos\tp_aye-master\puppy\puppy\linkedlist.h(80): note: vea la declaración de 'Iterator<T>'
+  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
           with
           [
               T=Items *
           ]
-d:\algoritmos\tp_aye-master\puppy\puppy\juego.h(109): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(120): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
           with
           [
               T=Heli *
           ]
-  d:\algoritmos\tp_aye-master\puppy\puppy\linkedlist.h(80): note: vea la declaración de 'Iterator<T>'
+  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
           with
           [
               T=Heli *
           ]
-d:\algoritmos\tp_aye-master\puppy\puppy\juego.h(115): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(135): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
           with
           [
               T=Torreta *
           ]
-  d:\algoritmos\tp_aye-master\puppy\puppy\linkedlist.h(80): note: vea la declaración de 'Iterator<T>'
+  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
           with
           [
               T=Torreta *
           ]
-d:\algoritmos\tp_aye-master\puppy\puppy\juego.h(138): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(166): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
           with
           [
               T=Enemigo *
           ]
-  d:\algoritmos\tp_aye-master\puppy\puppy\linkedlist.h(80): note: vea la declaración de 'Iterator<T>'
+  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
           with
           [
               T=Enemigo *
           ]
-d:\algoritmos\tp_aye-master\puppy\puppy\myform.cpp(4): warning C4829: Parámetros posiblemente incorrectos para la función main. Utilice 'int main(Platform::Array<Platform::String^>^ argv)'
+c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\myform.cpp(4): warning C4829: Parámetros posiblemente incorrectos para la función main. Utilice 'int main(Platform::Array<Platform::String^>^ argv)'
   MyForm.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  Puppy.vcxproj -> D:\algoritmos\TP_AyE-master\Puppy\x64\Debug\Puppy.exe
+  Puppy.vcxproj -> C:\Users\rodri\source\repos\SW32-TP-201822706-2018190113\Puppy\x64\Debug\Puppy.exe
