@@ -1,7 +1,6 @@
 #pragma once
 #include "Player.h"
 #include "Enemigo.h"
-//#include "Disco.h"
 #include "Items.h"
 #include "LinkedList.h"
 #include "Heli.h"
