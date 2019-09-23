@@ -10,8 +10,8 @@ Disco::Disco() {
 }
 Disco::~Disco() {
 }
-void Disco::Mostrar(Graphics^ g, Image^ img) {
-	Color micolor = FromArgb(234, 190, 63);
+void Disco::Draw(Graphics^ g) {
+	Color micolor = System::Drawing::Color::FromArgb(234, 190, 63);
 	System::Drawing::SolidBrush^ brocha = gcnew System::Drawing::SolidBrush(micolor);
 	System::Drawing::Pen^ p = gcnew System::Drawing::Pen(micolor);
 	if (x > 0 && y > 0) {

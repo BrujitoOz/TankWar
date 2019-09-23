@@ -22,13 +22,16 @@ public:
 		}
 		Size++;
 	}
-	void pop() {
+	T pop() {
 		if (!empty()) {
 			Node<T>* NodeAux = Front;
+			T value = NodeAux->GetVal(); // se guarda el valor con un auxiliar para devolverlo despues
 			Front = NodeAux->GetNext();
 			delete NodeAux;
 			Size -= 1;
+			return value;
 		}
+		return nullptr; 
 	}
 	T front() {
 		return Front->GetVal();

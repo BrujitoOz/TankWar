@@ -90,6 +90,8 @@ namespace Puppy {
 			objjuego->Mover_player(direccion::arriba, CreateGraphics());
 		if (e->KeyCode == Keys::Down)
 			objjuego->Mover_player(direccion::abajo, CreateGraphics());
+		if (e->KeyCode == Keys::Space)
+			objjuego->Disparar(CreateGraphics());
 	}
 	};
 }

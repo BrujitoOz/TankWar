@@ -50,7 +50,7 @@ public:
 		Size++;
 	}
 	void DeletePos(unsigned int pos) {
-		if (pos >= 0 && pos <= Size) {
+		if (pos >= 0 && pos < Size) {
 			if (pos == 0)
 				DeleteFirst();
 			else if (pos > 0 && pos < Size) {
@@ -64,7 +64,7 @@ public:
 				DeleteEnd();
 		}
 	}
-	Node* GetNode(int index) { // iterador
+	Node<T>* GetNode(int index) { // iterador
 		unsigned int cont = 0;
 		Node<T>* NodeAux = Head;
 		while (cont < index) {
@@ -82,7 +82,7 @@ public:
 			while (NodeAux->GetNext() != nullptr)
 				NodeAux = NodeAux->GetNext();
 			Node<T>* NodeAux2 = NodeAux->GetNext();
-			NodeAux->SetNext(NodeAux2->SetNext());
+			NodeAux->SetNext(NodeAux2->GetNext());
 			delete NodeAux2;
 			Size --;
 		}

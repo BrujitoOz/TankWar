@@ -15,6 +15,7 @@ class Juego {
 	LinkedList<Heli*> helicopteros;
 	LinkedList<Torreta*> torretas;
 	Enemigo* enemigo;
+	int puntos;
 	//Disco* disco;
 public:
 	Juego();
@@ -25,8 +26,11 @@ public:
 	void Mover_Enemigos(Graphics^ g);
 	bool Colision(Base* player, Base* disco);
 	void InitEnemigos(int ene);
+	void Disparar(Graphics^ g);
+
 };
 Juego::Juego() {
+	puntos = 0;
 }
 Juego::~Juego() {
 	delete player;
@@ -69,6 +73,7 @@ void Juego::InitEnemigos(int ene) {
 		enemigos.AddFirst(aux);
 	}
 }
+
 void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret) {
 	g->DrawImage(imgfondo, g->VisibleClipBounds);
 	player->Draw(g, imgplayer);
@@ -90,14 +95,31 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		aux->Cambiar_tipo(tip);
 		items.AddFirst(aux);
 	}
+	
 	for (Iterator<Items*> aux = items.Begin(); aux != items.End(); aux++)
 	{
 		Items* e = *aux;
 		e->Dibujar(g);
+
+		// se detectan colisiones entre player e items
+		if (!e->GetEliminar() && Colision(player, e))
+		{
+			e->SetEliminar(true);
+
+			// items.DeletePos(i);
+			// le añadimos una bala al jugador en su cola
+			player->AddBala(e->Retornar_tipo());
+
+		}
 	}
+
+	// se eliminan las monedas
+
+
 	if (random == 3)
 	{
 		heli = new Heli();
+		heli->SetEliminar(false);
 		heli->SetX(0);
 		heli->SetY(400);
 		heli->SetDX(5);
@@ -111,6 +133,15 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		Heli* e = *aux;
 		e->Draw(g, imgheli);
 		e->Move(g);
+
+		if(player->getCurrentBala() != nullptr)
+			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
+			{
+				e->SetEliminar(true);
+				puntos++;
+				player->removeCurrentBala();
+			}
+
 	}
 	for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)
 	{
@@ -118,9 +149,17 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		e->Draw(g, imgtorret);
 		
 	}
+
+	
+
+
+
 }
-bool Juego::Colision(Base* player, Base* disco) {
-	return 0;
+bool Juego::Colision(Base* b1, Base* b2) {
+	Rectangle r1 = Rectangle(b1->GetX(), b1->GetY(), b1->GetL(), b1->GetL());
+	Rectangle click = Rectangle(b2->GetX(), b2->GetY(), b2->GetA(), b2->GetL());
+	bool inter = click.IntersectsWith(r1);
+	return inter;
 }
 void Juego::Mover_player(direccion movimiento, Graphics^ g) {
 	if (movimiento == direccion::abajo)
@@ -141,3 +180,10 @@ inline void Juego::Mover_Enemigos(Graphics^ g)
 		e->Move(g);
 	}
 }
+
+void Juego::Disparar(Graphics^ g)
+{
+	player->ShotPlayer();
+}
+
+

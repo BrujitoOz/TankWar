@@ -55,20 +55,26 @@ int Heli::GetColumnaMax() {
 	return ColumnaMax;
 }
 void Heli::Draw(Graphics^ g, Image^ img) {
-	l = img->Height / FilaMax;
-	a = img->Width / ColumnaMax;
-	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
-	Rectangle Destino = Rectangle(x, y, a, l);
-	g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
+
+	if (!Eliminar) {
+		l = img->Height / FilaMax;
+		a = img->Width / ColumnaMax;
+		Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
+		Rectangle Destino = Rectangle(x, y, a, l);
+		g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
+	}
 }
 void Heli::Move(System::Drawing::Graphics^ g)
 {
+	if (Eliminar) // si esta eliminado ya no ejecuta lo de abajo
+		return;
 	y += dy;
 	IndiceFila++;
 	if (IndiceFila == 4) IndiceFila = 0;
 	if (y < g->VisibleClipBounds.Top || y + l > g->VisibleClipBounds.Bottom)
-		dy *= -1;
+		Eliminar = true;
 	x += dx;
 	if (x < g->VisibleClipBounds.Left || x + a > g->VisibleClipBounds.Right)
-		dx *= -1;
+		Eliminar = true;
+
 }

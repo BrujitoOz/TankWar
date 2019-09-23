@@ -53,7 +53,7 @@ void Items::Dibujar(System::Drawing::Graphics ^ g) {
 	System::Drawing::Color micolor = System::Drawing::Color::FromArgb(r, ge, b);
 	System::Drawing::SolidBrush^ brocha = gcnew System::Drawing::SolidBrush(micolor);
 	System::Drawing::Pen ^p = gcnew System::Drawing::Pen(micolor);
-	if (x > 0 && y > 0) {
+	if (!Eliminar &&  x > 0 && y > 0) {
 		g->DrawEllipse(p, x, y, l, a);
 		g->FillEllipse(brocha, x, y, l, a);
 	}
