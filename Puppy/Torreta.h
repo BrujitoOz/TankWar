@@ -22,8 +22,8 @@ public:
 
 Torreta::Torreta()
 {
-	SetPathIMG("Torreta.png");
-	IndiceColumna = 8;
+	SetPathIMG("torretas.png");
+	IndiceColumna = 0;
 	IndiceFila = 0;
 }
 

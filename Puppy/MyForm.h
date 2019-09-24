@@ -1,5 +1,7 @@
 #pragma once
 #include "Juego.h"
+
+
 namespace Puppy {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -15,14 +17,29 @@ namespace Puppy {
 		Image^ imgplayer = gcnew Bitmap("tanques.png");
 		Image^ imgfondo = gcnew Bitmap("fondov2.jpg");
 		Image^ imgheli = gcnew Bitmap("Helicop.png");
-		Image^ imgtorret = gcnew Bitmap("Torreta.png");
+		Image^ imgtorret = gcnew Bitmap("torretas.png");
 		Image^ imgbalas = gcnew Bitmap("balas.png");
-		Image^ imgitems = gcnew Bitmap("items.png");
+		Image^ imgshut = gcnew Bitmap("disparot.png");
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label2;
+
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ lblName;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ lblShowName;
+
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ lblPtos;
+	private: System::Windows::Forms::Label^ label4;
+
+
+			 Image^ imgitems = gcnew Bitmap("items.png");
 	public:
 		MyForm(void) {
 			InitializeComponent();
 			objjuego = new Juego();
-			objjuego->Init();
+			objjuego->Init(CreateGraphics());
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -50,8 +67,18 @@ namespace Puppy {
 		/// </summary>
 		void InitializeComponent(void) {
 			this->components = (gcnew System::ComponentModel::Container());
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->lblName = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lblShowName = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->lblPtos = (gcnew System::Windows::Forms::Label());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -59,16 +86,124 @@ namespace Puppy {
 			this->timer1->Enabled = true;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::Transparent;
+			this->panel1->Controls->Add(this->label4);
+			this->panel1->Controls->Add(this->label3);
+			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->textBox1);
+			this->panel1->Controls->Add(this->lblName);
+			this->panel1->Location = System::Drawing::Point(38, 44);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(200, 133);
+			this->panel1->TabIndex = 0;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(60, 108);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(81, 13);
+			this->label4->TabIndex = 5;
+			this->label4->Text = L"Guardar Partida";
+			this->label4->Click += gcnew System::EventHandler(this, &MyForm::Label4_Click);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(60, 79);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(74, 13);
+			this->label3->TabIndex = 4;
+			this->label3->Text = L"Cargar Partida";
+			this->label3->Click += gcnew System::EventHandler(this, &MyForm::Label3_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(60, 56);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(71, 13);
+			this->label2->TabIndex = 3;
+			this->label2->Text = L"Iniciar Partida";
+			this->label2->Click += gcnew System::EventHandler(this, &MyForm::Label2_Click);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(57, 17);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->TabIndex = 1;
+			// 
+			// lblName
+			// 
+			this->lblName->AutoSize = true;
+			this->lblName->Location = System::Drawing::Point(4, 20);
+			this->lblName->Name = L"lblName";
+			this->lblName->Size = System::Drawing::Size(47, 13);
+			this->lblName->TabIndex = 0;
+			this->lblName->Text = L"Nombre:";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 9);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(47, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Nombre:";
+			this->label1->Visible = false;
+			// 
+			// lblShowName
+			// 
+			this->lblShowName->AutoSize = true;
+			this->lblShowName->Location = System::Drawing::Point(54, 9);
+			this->lblShowName->Name = L"lblShowName";
+			this->lblShowName->Size = System::Drawing::Size(53, 13);
+			this->lblShowName->TabIndex = 2;
+			this->lblShowName->Text = L"John Doe";
+			this->lblShowName->Visible = false;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(133, 9);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(43, 13);
+			this->label5->TabIndex = 3;
+			this->label5->Text = L"Puntos:";
+			this->label5->Visible = false;
+			// 
+			// lblPtos
+			// 
+			this->lblPtos->AutoSize = true;
+			this->lblPtos->Location = System::Drawing::Point(172, 9);
+			this->lblPtos->Name = L"lblPtos";
+			this->lblPtos->Size = System::Drawing::Size(13, 13);
+			this->lblPtos->TabIndex = 4;
+			this->lblPtos->Text = L"0";
+			this->lblPtos->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
+			this->Controls->Add(this->lblPtos);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->lblShowName);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -77,7 +212,23 @@ namespace Puppy {
 			BufferedGraphicsContext^ espacioBuffer = BufferedGraphicsManager::Current;
 			BufferedGraphics^ buffer = espacioBuffer->Allocate(g, this->ClientRectangle);
 			buffer->Graphics->Clear(Color::White);
-			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems);
+			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems,  imgshut);
+
+			//cambiamos puntuacion
+			this->lblPtos->Text = objjuego->GetPuntos().ToString();
+
+			if (objjuego->GetPausa())
+			{
+				this->panel1->Visible = true;
+				this->panel1->Enabled = true;
+			}
+			else {
+				this->panel1->Visible = false;
+				this->panel1->Enabled = false;
+
+			}
+
+
 			buffer->Render(g);
 			delete espacioBuffer;
 			delete g;
@@ -94,6 +245,43 @@ namespace Puppy {
 			objjuego->Mover_player(direccion::abajo, CreateGraphics());
 		if (e->KeyCode == Keys::Space)
 			objjuego->Disparar(CreateGraphics());
+
+		if (e->KeyCode == Keys::P)
+			objjuego->SetPausa(!objjuego->GetPausa());
+
 	}
-	};
+	private: System::Void Label2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->textBox1->Enabled = false;
+		this->textBox1->Visible = false;
+
+
+		//Obtenemos el nombre
+		/*msclr::interop::marshal_context context;
+
+		std::string nameStd = context.marshal_as<std::string>(this->textBox1->Text);
+		objjuego->SetNombre(nameStd);*/
+
+		this->lblShowName->Visible = true;
+		this->label1->Visible = true;
+		this->label5->Visible = true;
+		this->lblPtos->Visible = true;
+
+		this->lblShowName->Text = this->textBox1->Text;
+
+		objjuego->SetPausa(false);
+
+	}
+
+    // grabar partida
+	private: System::Void Label4_Click(System::Object^ sender, System::EventArgs^ e) {
+		objjuego->GrabarPartida();
+		MessageBox::Show("Partida Guardada");
+	}
+
+    // cargar partida
+	private: System::Void Label3_Click(System::Object^ sender, System::EventArgs^ e) {
+		objjuego->CargarPartida();
+	}
+};
 }

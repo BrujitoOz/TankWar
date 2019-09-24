@@ -36,8 +36,8 @@ public:
 	void AddBala(int tipo) {
 		Bala* bala = new Bala();
 		bala->Cambiar_tipo(tipo); // la bala recibe el mismo "tipo" que tiene la clase Items, resultando que ambos tengan el mismo color
-		//bala->SetA(14); 
-		//bala->SetL(14);
+		// bala->SetA(14); 
+		// bala->SetL(14);
 		bala->SetColumnaMax(4);
 		bala->SetFilaMax(1);
 		balas.push(bala); // se aniade a la cola
@@ -70,14 +70,14 @@ void Player::ShotPlayer() {
 		currentBala->SetX(x+a/2); 
 		currentBala->SetY(y+l/2);
 		// se dispara en la direccion segun donde se encontraba apuntando el tanque como indica el sprite
-		if (IndiceFila == 3)
+		if (IndiceColumna == 2)
 		{
 			currentBala->SetDX(15);
 			currentBala->SetDY(15);
 		}
 
 
-		if (IndiceFila == 0)
+		if (IndiceColumna == 0)
 		{
 			currentBala->SetDX(0);
 			currentBala->SetDY(20);

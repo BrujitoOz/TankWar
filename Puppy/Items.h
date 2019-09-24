@@ -89,6 +89,7 @@ void Items::Dibujar(Graphics^ g, Image^ img) {
 	a = img->Width / ColumnaMax;
 	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
 	Rectangle Destino = Rectangle(x, y, a, l);
+	if(!Eliminar)
 	g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
 }
 //void Items::Dibujar(System::Drawing::Graphics ^ g) {}
