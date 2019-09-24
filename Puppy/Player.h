@@ -154,6 +154,7 @@ void Player::Draw(Graphics^ g, Image^ img, Image^ img2) {
 	a = img->Width / ColumnaMax;
 	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
 	Rectangle Destino = Rectangle(x, y, a, l);
+	if (!Eliminar)
 	g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
 	// La funcion dibujar del tanque tambien dibuja sus balas
 	if (currentBala != nullptr)
@@ -166,7 +167,6 @@ void Player::Draw(Graphics^ g, Image^ img, Image^ img2) {
 		{
 		removeCurrentBala(); // funcion para eliminar el currentbala
 		}
-
 	}
 }
 

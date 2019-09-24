@@ -26,6 +26,7 @@ class Juego {
 	LinkedList<DisparoT*> shott;
 	Enemigo* enemigo;
 	int puntos;
+	int vidas = 5;
 	string nombre;
 	//Disco* disco;
 
@@ -74,6 +75,7 @@ void Juego::Init(Graphics^ g) {
 	player->SetL(img->Height);
 	player->SetColumnaMax(4);
 	player->SetFilaMax(1);
+	player->SetEliminar(false);
 
 	Torreta* torret;
 	for (int i = 0; i < 6; i++)
@@ -83,6 +85,7 @@ void Juego::Init(Graphics^ g) {
 		torret->SetY(g->VisibleClipBounds.Bottom - 150);
 		torret->SetColumnaMax(4);
 		torret->SetFilaMax(1);
+		torret->SetVidas(4);
 		if (i < 3) torret->SetIndiceColumna(3);
 		else torret->SetIndiceColumna(0);
 		torret->SetEliminar(false);
@@ -107,8 +110,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 	int random = rand() % 60;
 	int qtd;
 	int auxqdt;
-	
-	
+
 	if (random == 4|| random == 5 || random == 6)
 	{
 		int tip = 1 + rand() % 4;
@@ -123,7 +125,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		aux->Cambiar_tipo(tip);
 		items.AddFirst(aux);
 	}
-	if (random == 10 || random == 11)
+	if (random == 10 || random == 11 || random ==12)
 	{
 		qtd = rand() % 6;
 		int disx;
@@ -219,17 +221,24 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 				e->SetEliminar(true);
 				puntos++;
 				player->removeCurrentBala();
-
 				GrabarPuntuacion();
-
 			}
-
+		
 	}
 	for (Iterator<DisparoT*> aux = shott.Begin(); aux != shott.End(); aux++)
 	{
 		DisparoT* e = *aux;
 		e->Dibujar(g, imgshut);
 		e->Mover(g);
+		if (!e->GetEliminar() && Colision(player, e))
+		{
+			e->SetEliminar(true);
+			vidas--;
+			if (vidas == 0)
+			{
+				player->SetEliminar(true);
+			}
+		}
 	}
 	int qtd3 = 0;
 	for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)
@@ -237,20 +246,31 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		Torreta* e = *aux;
 		if (random == 10 || random == 11)
 		{
-			
 			if (qtd3 <3 && auxqdt == qtd3)
 			{
-				
 				e->SetIndiceColumna(0);
 			}
 			if (qtd3 >= 3 && auxqdt == qtd3)
 			{
-
 				e->SetIndiceColumna(3);
 			}
 		}
-			
+		if (player->getCurrentBala() != nullptr)
+			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
+			{
+				e->SetVidas(e->GetVidas()-1);
+				//puntos++;
+				player->removeCurrentBala();
+				
+				//GrabarPuntuacion();
+				if (e->GetVidas() < 0)
+				{
+					e->SetEliminar(true);
+				}
+			}
 		
+
+
 		e->Draw(g, imgtorret);
 		qtd3 = qtd3 + 1;
 	}
@@ -262,8 +282,8 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 }
 bool Juego::Colision(Base* b1, Base* b2) {
 	Rectangle r1 = Rectangle(b1->GetX(), b1->GetY(), b1->GetL(), b1->GetL());
-	Rectangle click = Rectangle(b2->GetX(), b2->GetY(), b2->GetA(), b2->GetL());
-	bool inter = click.IntersectsWith(r1);
+	Rectangle r2 = Rectangle(b2->GetX(), b2->GetY(), b2->GetA(), b2->GetL());
+	bool inter = r2.IntersectsWith(r1);
 	return inter;
 }
 void Juego::Mover_player(direccion movimiento, Graphics^ g) {

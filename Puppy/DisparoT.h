@@ -22,7 +22,7 @@ DisparoT::~DisparoT()
 }
 
 void DisparoT::Dibujar(Graphics^ g, Image^ img) {
-
+	if (!Eliminar)
 	g->DrawImage(img, x, y,a, l);
 }
 
