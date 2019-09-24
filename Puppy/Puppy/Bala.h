@@ -95,6 +95,7 @@ void Bala::Dibujar(Graphics^ g, Image^ img2) {
 	}*/
 	l = img2->Height / FilaMax;
 	a = img2->Width / ColumnaMax;
+	
 	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
 	Rectangle Destino = Rectangle(x, y, a, l);
 	g->DrawImage(img2, Destino, porcionUsar, GraphicsUnit::Pixel);

@@ -60,6 +60,15 @@
     <ClInclude Include="Torreta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bala.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PuntuacionFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PartidaFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">

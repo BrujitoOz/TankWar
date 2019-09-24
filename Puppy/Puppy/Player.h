@@ -36,8 +36,8 @@ public:
 	void AddBala(int tipo) {
 		Bala* bala = new Bala();
 		bala->Cambiar_tipo(tipo); // la bala recibe el mismo "tipo" que tiene la clase Items, resultando que ambos tengan el mismo color
-		//bala->SetA(14); 
-		//bala->SetL(14);
+		// bala->SetA(14); 
+		// bala->SetL(14);
 		bala->SetColumnaMax(4);
 		bala->SetFilaMax(1);
 		balas.push(bala); // se aniade a la cola

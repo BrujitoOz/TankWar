@@ -1,46 +1,63 @@
 ﻿  MyForm.cpp
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\base.h(63): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: vea la declaración de 'strcpy'
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(88): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
-          with
-          [
-              T=Items *
-          ]
-  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
-          with
-          [
-              T=Items *
-          ]
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(120): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
-          with
-          [
-              T=Heli *
-          ]
-  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
-          with
-          [
-              T=Heli *
-          ]
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(135): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
-          with
-          [
-              T=Torreta *
-          ]
-  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
-          with
-          [
-              T=Torreta *
-          ]
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\juego.h(166): warning C4620: no se encontró ninguna forma postfija de 'operator ++' para el tipo 'Iterator<T>'; se utiliza la forma de prefijo
-          with
-          [
-              T=Enemigo *
-          ]
-  c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\linkedlist.h(106): note: vea la declaración de 'Iterator<T>'
-          with
-          [
-              T=Enemigo *
-          ]
-c:\users\rodri\source\repos\sw32-tp-201822706-2018190113\puppy\puppy\myform.cpp(4): warning C4829: Parámetros posiblemente incorrectos para la función main. Utilice 'int main(Platform::Array<Platform::String^>^ argv)'
-  MyForm.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  Puppy.vcxproj -> C:\Users\rodri\source\repos\SW32-TP-201822706-2018190113\Puppy\x64\Debug\Puppy.exe
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Base.h(63,1): warning C4996:  'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(133): message :  see declaration of 'strcpy'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(82,44): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(123,68): warning C4620:  no postfix form of 'operator ++' found for type 'Iterator<T>', using prefix form
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(123,68): warning C4620:         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(123,68): warning C4620:         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(123,68): warning C4620:             T=Items *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(123,68): warning C4620:         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :  see declaration of 'Iterator<T>'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :             T=Items *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(156,81): warning C4620:  no postfix form of 'operator ++' found for type 'Iterator<T>', using prefix form
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(156,81): warning C4620:         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(156,81): warning C4620:         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(156,81): warning C4620:             T=Heli *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(156,81): warning C4620:         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :  see declaration of 'Iterator<T>'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :             T=Heli *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(175,76): warning C4620:  no postfix form of 'operator ++' found for type 'Iterator<T>', using prefix form
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(175,76): warning C4620:         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(175,76): warning C4620:         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(175,76): warning C4620:             T=Torreta *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(175,76): warning C4620:         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :  see declaration of 'Iterator<T>'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :             T=Torreta *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(210,73): warning C4620:  no postfix form of 'operator ++' found for type 'Iterator<T>', using prefix form
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(210,73): warning C4620:         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(210,73): warning C4620:         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(210,73): warning C4620:             T=Enemigo *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(210,73): warning C4620:         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :  see declaration of 'Iterator<T>'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :             T=Enemigo *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(106): message :         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\MyForm.cpp(4,37): warning C4829:  Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(53,23): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(52): message :  while compiling class template member function 'void LinkedList<Items *>::DeletePos(unsigned int)'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(142): message :  see reference to function template instantiation 'void LinkedList<Items *>::DeletePos(unsigned int)' being compiled
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\Juego.h(23): message :  see reference to class template instantiation 'LinkedList<Items *>' being compiled
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(56,28): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(70,15): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(67): message :  while compiling class template member function 'Node<T> *LinkedList<T>::GetNode(int)'
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(67): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(67): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(67): message :             T=Items *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(67): message :         ]
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(57): message :  see reference to function template instantiation 'Node<T> *LinkedList<T>::GetNode(int)' being compiled
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(57): message :         with
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(57): message :         [
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(57): message :             T=Items *
+C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\Puppy\LinkedList.h(57): message :         ]
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Puppy.vcxproj -> C:\Users\oz\source\repos\BrujitoOz\SW32-TP-201822706-201819011\Puppy\x64\Debug\Puppy.exe

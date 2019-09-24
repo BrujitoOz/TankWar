@@ -20,5 +20,10 @@ public:
 	T operator* () {
 		return aux->val;
 	}
+
+	int getPos() {
+		return pos;
+	}
+
 };
 
