@@ -17,8 +17,9 @@ namespace Puppy {
 		Image^ imgplayer = gcnew Bitmap("tanques.png");
 		Image^ imgfondo = gcnew Bitmap("fondov2.jpg");
 		Image^ imgheli = gcnew Bitmap("Helicop.png");
-		Image^ imgtorret = gcnew Bitmap("Torreta.png");
+		Image^ imgtorret = gcnew Bitmap("torretas.png");
 		Image^ imgbalas = gcnew Bitmap("balas.png");
+		Image^ imgshut = gcnew Bitmap("disparot.png");
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
@@ -211,7 +212,7 @@ namespace Puppy {
 			BufferedGraphicsContext^ espacioBuffer = BufferedGraphicsManager::Current;
 			BufferedGraphics^ buffer = espacioBuffer->Allocate(g, this->ClientRectangle);
 			buffer->Graphics->Clear(Color::White);
-			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems);
+			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems,  imgshut);
 
 			//cambiamos puntuacion
 			this->lblPtos->Text = objjuego->GetPuntos().ToString();

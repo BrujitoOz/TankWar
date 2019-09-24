@@ -70,14 +70,14 @@ void Player::ShotPlayer() {
 		currentBala->SetX(x+a/2); 
 		currentBala->SetY(y+l/2);
 		// se dispara en la direccion segun donde se encontraba apuntando el tanque como indica el sprite
-		if (IndiceFila == 3)
+		if (IndiceColumna == 2)
 		{
 			currentBala->SetDX(15);
 			currentBala->SetDY(15);
 		}
 
 
-		if (IndiceFila == 0)
+		if (IndiceColumna == 0)
 		{
 			currentBala->SetDX(0);
 			currentBala->SetDY(20);
@@ -154,6 +154,7 @@ void Player::Draw(Graphics^ g, Image^ img, Image^ img2) {
 	a = img->Width / ColumnaMax;
 	Rectangle porcionUsar = Rectangle(IndiceColumna * a, IndiceFila * l, a, l);
 	Rectangle Destino = Rectangle(x, y, a, l);
+	if (!Eliminar)
 	g->DrawImage(img, Destino, porcionUsar, GraphicsUnit::Pixel);
 	// La funcion dibujar del tanque tambien dibuja sus balas
 	if (currentBala != nullptr)
@@ -166,7 +167,6 @@ void Player::Draw(Graphics^ g, Image^ img, Image^ img2) {
 		{
 		removeCurrentBala(); // funcion para eliminar el currentbala
 		}
-
 	}
 }
 

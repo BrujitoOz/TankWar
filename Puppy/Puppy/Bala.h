@@ -86,13 +86,7 @@ void Bala::Conf_tipo()
 }
 void Bala::Dibujar(Graphics^ g, Image^ img2) {
 	Conf_tipo();
-	/*System::Drawing::Color micolor = System::Drawing::Color::FromArgb(r, ge, b);
-	System::Drawing::SolidBrush^ brocha = gcnew System::Drawing::SolidBrush(micolor);
-	System::Drawing::Pen^ p = gcnew System::Drawing::Pen(micolor);
-	if (x > 0 && y > 0) {
-		g->DrawEllipse(p, x, y, l, a);
-		g->FillEllipse(brocha, x, y, l, a);
-	}*/
+	
 	l = img2->Height / FilaMax;
 	a = img2->Width / ColumnaMax;
 	
