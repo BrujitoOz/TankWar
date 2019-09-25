@@ -44,7 +44,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -130,7 +130,6 @@
   <ItemGroup>
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Base.h" />
-    <ClInclude Include="Disco.h" />
     <ClInclude Include="DisparoT.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Heli.h" />
@@ -138,7 +137,6 @@
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Monedas.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,11 +145,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PuntuacionFile.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="Stack.h" />
     <ClInclude Include="Torreta.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DisparoT.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
