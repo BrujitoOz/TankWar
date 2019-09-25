@@ -44,7 +44,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -147,11 +147,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PuntuacionFile.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="Stack.h" />
     <ClInclude Include="Torreta.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DisparoT.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
