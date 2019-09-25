@@ -10,7 +10,7 @@
 #include "Torreta.h"
 #include "Bala.h"
 #include "DisparoT.h"
-#include "Explocion.h"
+
 
 #include "PuntuacionFile.h"
 #include "PartidaFile.h"
@@ -24,8 +24,7 @@ class Juego {
 	LinkedList<Heli*> helicopteros;
 	LinkedList<Torreta*> torretas;
 	LinkedList<DisparoT*> shott;
-	LinkedList<Explocion*> bum;
-
+	Enemigo* enemigo;
 	int puntos;
 	int vidas = 5;
 	string nombre;
@@ -38,7 +37,7 @@ public:
 	Juego();
 	~Juego();
 	void Init(Graphics^ g);
-	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum);
+	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut);
 	void Mover_player(direccion movimiento, Graphics^ g);
 	
 	bool Colision(Base* player, Base* disco);
@@ -52,6 +51,7 @@ public:
 	void SetPausa(bool pausa);
 	bool GetPausa();
 	int GetPuntos();
+	int GetVidas();
 	void SetNombre(string nombre);
 	string GetNombre();
 
@@ -96,7 +96,7 @@ void Juego::Init(Graphics^ g) {
 }
 
 
-void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum) {
+void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut) {
 	g->DrawImage(imgfondo, g->VisibleClipBounds);
 	player->Draw(g, imgplayer, imgbalas);
 
@@ -106,8 +106,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 	Items* aux;
 	Heli* heli;
 	DisparoT* shutt;
-	Explocion* boom;
-	Bala* balita;
+
 	int random = rand() % 60;
 	int qtd;
 	int auxqdt;
@@ -146,9 +145,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 			}
 			if (qtd >= 3 && qtd == qtd2)
 			{
-				
 				Torreta* e = *aux;
-				
 				e->SetIndiceColumna(2);
 				e->Draw(g, imgtorret);
 				disx = e->GetX();
@@ -222,7 +219,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
 			{
 				e->SetEliminar(true);
-				puntos++;
+				puntos=puntos+10;
 				player->removeCurrentBala();
 				GrabarPuntuacion();
 			}
@@ -235,22 +232,13 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		e->Mover(g);
 		if (!e->GetEliminar() && Colision(player, e))
 		{
-			
-			boom = new Explocion();
-			boom->SetX(e->GetX()-15);
-			boom->SetY(e->GetY()-15);
-			boom->SetEliminar(false);
-			boom->SetColumnaMax(8);
-			boom->SetFilaMax(4);
-			boom->SetIndiceFila(3);
-			bum.AddFirst(boom);
-
 			e->SetEliminar(true);
-
 			vidas--;
 			if (vidas == 0)
 			{
 				player->SetEliminar(true);
+				
+
 			}
 		}
 	}
@@ -274,21 +262,17 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 			{
 				e->SetVidas(e->GetVidas()-1);
 				//puntos++;
-				boom = new Explocion();
-				boom->SetX(e->GetX() + 15);
-				boom->SetY(e->GetY() + 15);
-				boom->SetEliminar(false);
-				boom->SetColumnaMax(8);
-				boom->SetFilaMax(4);
-				boom->SetIndiceFila(3);
-				bum.AddFirst(boom);
 				player->removeCurrentBala();
-
+				
 				//GrabarPuntuacion();
 				if (e->GetVidas() < 0)
 				{
 					e->SetEliminar(true);
+					puntos = puntos + 100;
+					player->removeCurrentBala();
+					GrabarPuntuacion();
 				}
+
 			}
 		
 
@@ -297,12 +281,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		qtd3 = qtd3 + 1;
 	}
 	
-	for (Iterator<Explocion*> aux = bum.Begin(); aux != bum.End(); aux++)
-	{
-		Explocion* e = *aux;
-		e->Draw(g, imgbum);
-			
-	}
+	
 
 
 
@@ -336,7 +315,7 @@ void Juego::Disparar(Graphics^ g)
 
 void Juego::GrabarPuntuacion()
 {
-	puntuacion->Grabar("John Doe", puntos);
+	puntuacion->Grabar("John Doe", puntos,vidas);
 }
 
 inline void Juego::GrabarPartida()
@@ -371,7 +350,10 @@ bool Juego::GetPausa()
 {
 	return puntos;
 }
-
+ int Juego::GetVidas()
+ {
+	 return vidas;
+ }
  void Juego::SetNombre(string nombre)
 {
 	 this->nombre = nombre;

@@ -9,7 +9,7 @@ class PuntuacionFile
 
 public:
 	PuntuacionFile();
-	void Grabar(string nombre, int puntos);
+	void Grabar(string nombre, int puntos, int vidas);
 	vector<string> ListaPuntuacion();
 	~PuntuacionFile();
 };
@@ -18,9 +18,9 @@ PuntuacionFile::PuntuacionFile()
 {
 	fileName = "puntuacion.txt";
 }
-void PuntuacionFile::Grabar(string nombre, int puntos)
+void PuntuacionFile::Grabar(string nombre, int puntos, int vidas)
 {
-	string linea = nombre + "," + std::to_string(puntos);
+	string linea = nombre + "," + std::to_string(puntos)+","+std::to_string(vidas);
 
 	std::ofstream outf(fileName, std::ios_base::app);
 	if (outf.is_open())
