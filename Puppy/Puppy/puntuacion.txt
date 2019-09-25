@@ -1,9 +1,2 @@
 John Doe,1
-John Doe,2
-John Doe,3
-John Doe,100
-John Doe,200
-John Doe,300
-John Doe,400
-John Doe,10,4
-John Doe,20,4
+John Doe,10

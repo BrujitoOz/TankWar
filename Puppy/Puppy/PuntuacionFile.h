@@ -18,9 +18,9 @@ PuntuacionFile::PuntuacionFile()
 {
 	fileName = "puntuacion.txt";
 }
-void PuntuacionFile::Grabar(string nombre, int puntos, int vidas)
+void PuntuacionFile::Grabar(string nombre, int puntos,int vidas)
 {
-	string linea = nombre + "," + std::to_string(puntos)+","+std::to_string(vidas);
+	string linea = nombre + "," + std::to_string(puntos) + "," + std::to_string(vidas);;
 
 	std::ofstream outf(fileName, std::ios_base::app);
 	if (outf.is_open())

@@ -20,6 +20,7 @@ namespace Puppy {
 		Image^ imgtorret = gcnew Bitmap("torretas.png");
 		Image^ imgbalas = gcnew Bitmap("balas.png");
 		Image^ imgshut = gcnew Bitmap("disparot.png");
+		Image^ imgbum = gcnew Bitmap("explociones.png");
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label2;
@@ -32,10 +33,10 @@ namespace Puppy {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ lblPtos;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^  label6;
-	private: System::Windows::Forms::Label^  label7;
 
 
+	private: System::Windows::Forms::Label^  label8;
+	private: System::Windows::Forms::Label^  label9;
 
 
 			 Image^ imgitems = gcnew Bitmap("items.png");
@@ -82,8 +83,8 @@ namespace Puppy {
 			this->lblShowName = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->lblPtos = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -160,7 +161,6 @@ namespace Puppy {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Nombre:";
 			this->label1->Visible = false;
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// lblShowName
 			// 
@@ -192,32 +192,32 @@ namespace Puppy {
 			this->lblPtos->Text = L"0";
 			this->lblPtos->Visible = false;
 			// 
-			// label6
+			// label8
 			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(203, 9);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(31, 13);
-			this->label6->TabIndex = 5;
-			this->label6->Text = L"Vida:";
-			this->label6->Click += gcnew System::EventHandler(this, &MyForm::label6_Click);
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(210, 8);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(31, 13);
+			this->label8->TabIndex = 7;
+			this->label8->Text = L"Vida:";
+			this->label8->Click += gcnew System::EventHandler(this, &MyForm::label8_Click);
 			// 
-			// label7
+			// label9
 			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(237, 9);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(13, 13);
-			this->label7->TabIndex = 6;
-			this->label7->Text = L"5";
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(237, 8);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(13, 13);
+			this->label9->TabIndex = 8;
+			this->label9->Text = L"5";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->label8);
 			this->Controls->Add(this->lblPtos);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->lblShowName);
@@ -240,11 +240,11 @@ namespace Puppy {
 			BufferedGraphicsContext^ espacioBuffer = BufferedGraphicsManager::Current;
 			BufferedGraphics^ buffer = espacioBuffer->Allocate(g, this->ClientRectangle);
 			buffer->Graphics->Clear(Color::White);
-			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems,  imgshut);
+			objjuego->Run(buffer->Graphics, imgplayer, imgfondo, imgheli, imgtorret, imgbalas, imgitems,  imgshut,  imgbum);
 
 			//cambiamos puntuacion
 			this->lblPtos->Text = objjuego->GetPuntos().ToString();
-			this->label7->Text = objjuego->GetVidas().ToString();
+			this->label9->Text = objjuego->GetVida().ToString();
 			if (objjuego->GetPausa())
 			{
 				this->panel1->Visible = true;
@@ -255,7 +255,7 @@ namespace Puppy {
 				this->panel1->Enabled = false;
 
 			}
-			if (objjuego->GetVidas() == 0) {
+			if (objjuego->GetVida() == 0) {
 				Close();
 			}
 
@@ -294,8 +294,7 @@ namespace Puppy {
 
 		this->lblShowName->Visible = true;
 		this->label1->Visible = true;
-		this->label5->Visible = true;
-		this->label7->Visible = true;
+		this->label9->Visible = true;
 		this->label5->Visible = true;
 		this->lblPtos->Visible = true;
 
@@ -315,11 +314,7 @@ namespace Puppy {
 	private: System::Void Label3_Click(System::Object^ sender, System::EventArgs^ e) {
 		objjuego->CargarPartida();
 	}
-private: System::Void progressBar1_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
