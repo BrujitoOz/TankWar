@@ -28,7 +28,6 @@ class Juego {
 	int puntos;
 	int vidas = 5;
 	string nombre;
-	//Disco* disco;
 
 	bool pausa;
 	PuntuacionFile*  puntuacion;
@@ -321,6 +320,12 @@ inline void Juego::GrabarPartida()
 
 inline void Juego::CargarPartida()
 {
+	partida->CargarPartida();
+
+	player->SetX(partida->getX());
+	player->SetY(partida->getY());
+
+	pausa = false;
 }
 
 

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
-
+#include <sstream>
 
 #include "Player.h"
 
@@ -22,7 +22,10 @@ public:
 	PartidaFile();
 	void Grabar(System::String^ name, Player* player);
 	void CargarPartida();
+	std::vector<std::string> split(const std::string& s, char delim);
 	~PartidaFile();
+	int getX();
+	int getY();
 };
 
 PartidaFile::PartidaFile()
@@ -39,7 +42,7 @@ void PartidaFile::Grabar(System::String^ name, Player* player)
 	std::string nameStd = "Pepe";
 
 
-	std::ofstream outf(fileName, std::ios_base::app);
+	std::ofstream outf(fileName, std::ios_base::trunc);
 	if (outf.is_open())
 	{
 		string lineaPlayer = nameStd + "," + std::to_string(player->GetX()) + "," + std::to_string(player->GetY());
@@ -53,6 +56,18 @@ void PartidaFile::Grabar(System::String^ name, Player* player)
 	}
 }
 
+std::vector<std::string> PartidaFile::split(const std::string& s, char delim = ',') {
+	std::stringstream ss(s);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		elems.push_back(item);
+		// elems.push_back(std::move(item)); // if C++11 (based on comment from @mchiasson)
+	}
+	return elems;
+}
+
+
 
 void PartidaFile::CargarPartida()
 {
@@ -63,7 +78,10 @@ void PartidaFile::CargarPartida()
 		inf >> linePlayer;
 
 		// picar el string linePlayer por las , para obtener los valores 
-		
+		std::vector<std::string> values = split(linePlayer);
+
+		playerX = std::stoi(values[1]);
+		playerY = std::stoi(values[2]);
 
 		
 		inf.close();
@@ -75,3 +93,12 @@ PartidaFile::~PartidaFile()
 {
 }
 
+inline int PartidaFile::getX()
+{
+	return playerX;
+}
+
+inline int PartidaFile::getY()
+{
+	return playerY;
+}
