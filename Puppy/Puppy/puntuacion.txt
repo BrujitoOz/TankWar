@@ -1,2 +1,6 @@
 John Doe,1
 John Doe,10
+John Doe,10,4
+John Doe,20,4
+John Doe,10,2
+John Doe,20,1

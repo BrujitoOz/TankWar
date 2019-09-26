@@ -38,6 +38,19 @@ namespace Puppy {
 
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::Panel^  panel2;
+	private: System::Windows::Forms::Label^  label16;
+	private: System::Windows::Forms::Label^  label15;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::Label^  label12;
+	private: System::Windows::Forms::Label^  label10;
+	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::Label^  Name3;
+	private: System::Windows::Forms::Label^  Name2;
+	private: System::Windows::Forms::Label^  Name1;
+	private: System::Windows::Forms::Label^  label11;
 
 
 			 Image^ imgitems = gcnew Bitmap("items.png");
@@ -86,7 +99,21 @@ namespace Puppy {
 			this->lblPtos = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->Name3 = (gcnew System::Windows::Forms::Label());
+			this->Name2 = (gcnew System::Windows::Forms::Label());
+			this->Name1 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
+			this->panel2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -212,11 +239,143 @@ namespace Puppy {
 			this->label9->TabIndex = 8;
 			this->label9->Text = L"5";
 			// 
+			// panel2
+			// 
+			this->panel2->BackColor = System::Drawing::Color::Transparent;
+			this->panel2->Controls->Add(this->label16);
+			this->panel2->Controls->Add(this->label15);
+			this->panel2->Controls->Add(this->label14);
+			this->panel2->Controls->Add(this->label13);
+			this->panel2->Controls->Add(this->label12);
+			this->panel2->Controls->Add(this->label10);
+			this->panel2->Controls->Add(this->label7);
+			this->panel2->Controls->Add(this->label6);
+			this->panel2->Controls->Add(this->Name3);
+			this->panel2->Controls->Add(this->Name2);
+			this->panel2->Controls->Add(this->Name1);
+			this->panel2->Controls->Add(this->label11);
+			this->panel2->Location = System::Drawing::Point(38, 196);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(253, 218);
+			this->panel2->TabIndex = 9;
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(172, 37);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(40, 13);
+			this->label16->TabIndex = 13;
+			this->label16->Text = L"Puntos";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(54, 37);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(49, 13);
+			this->label15->TabIndex = 12;
+			this->label15->Text = L"Nombres";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(199, 148);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(13, 13);
+			this->label14->TabIndex = 11;
+			this->label14->Text = L"0";
+			this->label14->Visible = false;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(199, 109);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(13, 13);
+			this->label13->TabIndex = 10;
+			this->label13->Text = L"0";
+			this->label13->Visible = false;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(199, 68);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(13, 13);
+			this->label12->TabIndex = 9;
+			this->label12->Text = L"0";
+			this->label12->Visible = false;
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(11, 148);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(16, 13);
+			this->label10->TabIndex = 8;
+			this->label10->Text = L"3.";
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(11, 109);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(16, 13);
+			this->label7->TabIndex = 7;
+			this->label7->Text = L"2.";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(11, 68);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(16, 13);
+			this->label6->TabIndex = 6;
+			this->label6->Text = L"1.";
+			// 
+			// Name3
+			// 
+			this->Name3->AutoSize = true;
+			this->Name3->Location = System::Drawing::Point(33, 148);
+			this->Name3->Name = L"Name3";
+			this->Name3->Size = System::Drawing::Size(10, 13);
+			this->Name3->TabIndex = 5;
+			this->Name3->Text = L":";
+			// 
+			// Name2
+			// 
+			this->Name2->AutoSize = true;
+			this->Name2->Location = System::Drawing::Point(33, 109);
+			this->Name2->Name = L"Name2";
+			this->Name2->Size = System::Drawing::Size(10, 13);
+			this->Name2->TabIndex = 4;
+			this->Name2->Text = L":";
+			// 
+			// Name1
+			// 
+			this->Name1->AutoSize = true;
+			this->Name1->Location = System::Drawing::Point(33, 68);
+			this->Name1->Name = L"Name1";
+			this->Name1->Size = System::Drawing::Size(10, 13);
+			this->Name1->TabIndex = 3;
+			this->Name1->Text = L":";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(73, 13);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(105, 13);
+			this->label11->TabIndex = 0;
+			this->label11->Text = L"Tabla de puntuacion";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(352, 448);
+			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->lblPtos);
@@ -230,6 +389,8 @@ namespace Puppy {
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
+			this->panel2->ResumeLayout(false);
+			this->panel2->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -245,6 +406,7 @@ namespace Puppy {
 
 			//cambiamos puntuacion
 			this->lblPtos->Text = objjuego->GetPuntos().ToString();
+			this->label12->Text = objjuego->GetPuntos().ToString();
 			this->label9->Text = objjuego->GetVida().ToString();
 			if (objjuego->GetPausa())
 			{
@@ -257,7 +419,15 @@ namespace Puppy {
 
 			}
 			if (objjuego->GetVida() == 0) {
-			//	Close();
+				objjuego->SetPausa(true);
+				this->panel2->Visible = true;
+				this->panel2->Enabled = true;
+
+			}
+			else {
+				this->panel2->Visible = false;
+				this->panel2->Enabled = false;
+
 			}
 
 			buffer->Render(g);
@@ -296,11 +466,12 @@ namespace Puppy {
 		this->lblShowName->Visible = true;
 		this->label1->Visible = true;
 		this->label9->Visible = true;
+		this->label12->Visible = true;
 		this->label5->Visible = true;
 		this->lblPtos->Visible = true;
 
 		this->lblShowName->Text = this->textBox1->Text;
-
+		this->Name1->Text = this->textBox1->Text;
 		objjuego->SetPausa(false);
 
 	}
