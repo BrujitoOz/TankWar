@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{9700FB0C-247A-45A7-92D0-1E33CA1FEE40}</ProjectGuid>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Puppy</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AuxPunt.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="DisparoT.h" />
@@ -142,6 +142,7 @@
     </ClInclude>
     <ClInclude Include="Node.h" />
     <ClInclude Include="PartidaFile.h" />
+    <ClInclude Include="Pillation.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PuntuacionFile.h" />
     <ClInclude Include="Queue.h" />

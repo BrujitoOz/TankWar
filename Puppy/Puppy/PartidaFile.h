@@ -16,40 +16,64 @@ class PartidaFile
 
 	// varaibles auxiliares que se utlizan para cargar la partida
 	int playerX, playerY;
+	LinkedList<Heli*> helicopteros;
+	LinkedList<Torreta*> torretas;
 
 
 public:
 	PartidaFile();
-	void Grabar(System::String^ name, Player* player);
+	void Grabar(string name, Player* player, LinkedList<Heli*> heli, LinkedList<Torreta*> torretas);
 	void CargarPartida();
 	std::vector<std::string> split(const std::string& s, char delim);
 	~PartidaFile();
 	int getX();
 	int getY();
+	LinkedList<Heli*> getHelicopteros();
+	LinkedList<Torreta*> geTorretas();
+
 };
 
 PartidaFile::PartidaFile()
 {
 	fileName = "partida.txt";
 }
-void PartidaFile::Grabar(System::String^ name, Player* player)
+void PartidaFile::Grabar(string name, Player* player, LinkedList<Heli*> helicopteros, LinkedList<Torreta*> torretas)
 {
-	//Obtenemos el nombre
-	// msclr::interop::marshal_context context;
-
-	// std::string nameStd = context.marshal_as<std::string>(name);
-
-	std::string nameStd = "Pepe";
-
-
 	std::ofstream outf(fileName, std::ios_base::trunc);
 	if (outf.is_open())
 	{
-		string lineaPlayer = nameStd + "," + std::to_string(player->GetX()) + "," + std::to_string(player->GetY());
+		string lineaPlayer = name + "," + std::to_string(player->GetX()) + "," + std::to_string(player->GetY());
 
 		//se guardan datos del jugador
 		outf << lineaPlayer << "\n";
 
+		// guardamos los helicopteros
+		outf << helicopteros.size() << "\n";
+
+		for (Iterator<Heli*> aux = helicopteros.Begin(); aux != helicopteros.End(); aux++)
+		{
+			Heli* h = *aux;
+		    
+			string lineaHeli = std::to_string(h->GetX()) + "," + std::to_string(h->GetY());
+
+			//se guardan datos de los helicopteros
+			outf << lineaHeli << "\n";
+
+		}
+
+		//guardamos las torretas
+		outf << torretas.size() << "\n";
+
+		for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)
+		{
+			Torreta* t = *aux;
+
+			string lineaTorreta = std::to_string(t->GetX()) + "," + std::to_string(t->GetY()) + "," + std::to_string(t->GetVidas());
+
+			//se guardan datos de los helicopteros
+			outf << lineaTorreta << "\n";
+
+		}
 
 		outf.flush();
 		outf.close();
@@ -83,6 +107,68 @@ void PartidaFile::CargarPartida()
 		playerX = std::stoi(values[1]);
 		playerY = std::stoi(values[2]);
 
+
+		// se obtienen la cantidad de helicopteros para poder leer sus coordenadas
+		int cantHelicopteros = 0;
+		inf >> cantHelicopteros;
+
+		for (int i = 0; i < cantHelicopteros; i++)
+		{
+			std::string lineHelicoptero;
+			inf >> lineHelicoptero;
+
+			std::vector<std::string> valuesH = split(lineHelicoptero);
+
+
+			int HeliX = std::stoi(valuesH[0]);
+			int HeliY = std::stoi(valuesH[1]);
+
+			Heli* heli = new Heli();
+			heli->SetEliminar(false);
+			heli->SetX(HeliX);
+			heli->SetY(HeliY);
+			heli->SetDX(5);
+			heli->SetDY(0);
+			heli->SetFilaMax(4);
+			heli->SetColumnaMax(1);
+			helicopteros.AddFirst(heli);
+
+
+		}
+
+
+		// se obtienen la cantidad de helicopteros para poder leer sus coordenadas
+		int cantTorretas = 0;
+		inf >> cantTorretas;
+
+		for (int i = 0; i < cantTorretas; i++)
+		{
+
+			std::string lineT;
+			inf >> lineT;
+
+			std::vector<std::string> valuesT = split(lineT);
+
+			int tx = std::stoi(valuesT[0]);
+			int ty = std::stoi(valuesT[1]);
+			int vida = std::stoi(valuesT[2]);
+
+			Torreta *torret = new Torreta();
+			torret->SetX(tx);
+			torret->SetY(ty);
+			torret->SetColumnaMax(4);
+			torret->SetFilaMax(1);
+			torret->SetVidas(vida);
+			if (i < 3) torret->SetIndiceColumna(3);
+			else torret->SetIndiceColumna(0);
+			torret->SetEliminar(false);
+			torretas.AddFirst(torret);
+
+
+		}
+
+
+
 		
 		inf.close();
 	}
@@ -101,4 +187,14 @@ inline int PartidaFile::getX()
 inline int PartidaFile::getY()
 {
 	return playerY;
+}
+
+inline LinkedList<Heli*> PartidaFile::getHelicopteros()
+{
+	return helicopteros;
+}
+
+inline LinkedList<Torreta*> PartidaFile::geTorretas()
+{
+	return torretas;
 }

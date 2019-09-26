@@ -95,7 +95,7 @@ void Player::ShotPlayer() {
 }
 void Player::MoveUp(Graphics^ g) {
 	IndiceFila = 0;
-	dy = -5;
+	dy = -15;
 	if (g->VisibleClipBounds.Top < (y + dy))
 		y = y + dy;
 	IndiceColumna = 0;
@@ -103,7 +103,7 @@ void Player::MoveUp(Graphics^ g) {
 }
 void Player::MoveDown(Graphics^ g) {
 	IndiceFila = 0;
-	dy = 5;
+	dy = 15;
 	if (g->VisibleClipBounds.Bottom > (y + dy + l))
 		y = y + dy;
 	IndiceColumna =0 ;
@@ -111,7 +111,7 @@ void Player::MoveDown(Graphics^ g) {
 }
 void Player::MoveLeft(Graphics^ g) {
 	IndiceFila = 0;
-	dx = -5;
+	dx = -15;
 	if (g->VisibleClipBounds.Left < (x + dx))
 		x = x + dx;
 	IndiceColumna = 2;
@@ -119,7 +119,7 @@ void Player::MoveLeft(Graphics^ g) {
 }
 void Player::MoveRight(Graphics^ g) {
 	IndiceFila = 0;
-	dx = 5;
+	dx = 15;
 	if (g->VisibleClipBounds.Right > (x + dx + a))
 		x = x + dx;
 	IndiceColumna = 1;

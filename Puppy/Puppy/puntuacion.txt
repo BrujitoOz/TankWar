@@ -1,6 +1,12 @@
-John Doe,1
-John Doe,10
-John Doe,10,4
-John Doe,20,4
-John Doe,10,2
-John Doe,20,1
+Pedro,50,4
+Pedro,10,4
+Perez,0,0
+Pedro,30,4
+Perez,0,0
+,0,0
+Jose,50,1
+Jose,50,0
+Jose,50,1
+Pepe,0,0
+,0,0
+,0,0

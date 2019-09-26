@@ -63,6 +63,12 @@
     <ClInclude Include="DisparoT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pillation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AuxPunt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">

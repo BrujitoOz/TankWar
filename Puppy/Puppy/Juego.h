@@ -17,6 +17,8 @@
 #include "PuntuacionFile.h"
 #include "PartidaFile.h"
 
+#include "AuxPunt.h"
+
 
 enum direccion { arriba, abajo, izquierda, derecha, ninguno };
 class Juego {
@@ -35,7 +37,7 @@ class Juego {
 	Pillation<TVida*> pila6;
 
 	int puntos;
-	int vidas = 5;
+	int vidas = 1;
 	string nombre;
 
 	bool pausa;
@@ -54,6 +56,7 @@ public:
 
 
 	void GrabarPuntuacion();
+	vector<AuxPunt> GetPuntuaciones();
 	void GrabarPartida();
 	void CargarPartida();
 	int GetVida();
@@ -300,7 +303,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
 			{
 				e->SetEliminar(true);
-				puntos=puntos+10;
+				puntos=puntos+50;
 				player->removeCurrentBala();
 				GrabarPuntuacion();
 			}
@@ -309,26 +312,29 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 	for (Iterator<DisparoT*> aux = shott.Begin(); aux != shott.End(); aux++)
 	{
 		DisparoT* e = *aux;
-		e->Dibujar(g, imgshut);
-		e->Mover(g);
-		if (!e->GetEliminar() && Colision(player, e))
-		{
-			
-			boom = new Explocion();
-			boom->SetX(e->GetX()-15);
-			boom->SetY(e->GetY()-15);
-			boom->SetEliminar(false);
-			boom->SetColumnaMax(8);
-			boom->SetFilaMax(4);
-			boom->SetIndiceFila(3);
-			bum.AddFirst(boom);
-
-			e->SetEliminar(true);
-
-			vidas--;
-			if (vidas == 0)
+		if (e->GetEliminar() == false) {
+			e->Dibujar(g, imgshut);
+			e->Mover(g);
+			if (!e->GetEliminar() && Colision(player, e))
 			{
-				player->SetEliminar(true);
+
+				boom = new Explocion();
+				boom->SetX(e->GetX() - 15);
+				boom->SetY(e->GetY() - 15);
+				boom->SetEliminar(false);
+				boom->SetColumnaMax(8);
+				boom->SetFilaMax(4);
+				boom->SetIndiceFila(3);
+				bum.AddFirst(boom);
+
+				e->SetEliminar(true);
+
+				vidas--;
+				if (vidas == 0)
+				{
+					player->SetEliminar(true);
+					GrabarPuntuacion();
+				}
 			}
 		}
 	}
@@ -336,6 +342,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 	int cont = 0;
 	for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)
 	{
+
 		Torreta* e = *aux;
 		if (random == 10 || random == 11)
 		{
@@ -380,8 +387,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 						e->SetEliminar(true);
 						puntos = puntos + 1000;
 						player->removeCurrentBala();
-						GrabarPuntuacion();
-
+						
 					}
 					if (cont ==5 )pila1.pop();
 					if (cont == 4 )pila2.pop();
@@ -443,22 +449,122 @@ void Juego::Disparar(Graphics^ g)
 
 void Juego::GrabarPuntuacion()
 {
-	puntuacion->Grabar("John Doe", puntos, vidas);
+	puntuacion->Grabar(this->nombre, puntos, vidas);
 }
 
+
+std::vector<std::string> split(const std::string& s, char delim) {
+	std::stringstream ss(s);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		elems.push_back(item);
+	}
+	return elems;
+}
+
+
+
+
+vector < AuxPunt > Juego::GetPuntuaciones()
+{
+	vector<string>  puntuaciones =  puntuacion->ListaPuntuacion();
+	vector<AuxPunt>  puntuacionesOrdenadas;
+
+	std::vector<std::string> nombres;
+	std::vector<std::string> puntos;
+
+	for (int i = 0; i < puntuaciones.size(); i++)
+	{
+		std::vector<std::string> values = split(puntuaciones[i], ',');
+		nombres.push_back(values[0]);
+		puntos.push_back(values[1]);
+	}
+
+	auto compare = [](string s1, string s2) {
+
+		int i1 = std::stoi(s1);
+		int i2 = std::stoi(s2);
+
+		if (i1 < i2)
+			return true;
+
+		return false;
+	};
+
+
+	for (int i = 0; i < puntuaciones.size() - 1; i++)
+	{
+		string s1 = puntos[i];
+
+		for (int j = i + 1; j < puntuaciones.size(); j++)
+		{
+			string s2 = puntos[j];
+
+			if (compare(s1, s2))
+			{
+				string aux = puntos[i];
+				puntos[i] = puntos[j];
+				puntos[j] = aux;
+
+				string aux1 = nombres[i];
+				nombres[i] = nombres[j];
+				nombres[j] = aux1;
+			}
+
+		}
+
+	}
+
+	for (int i = 0; i < puntuaciones.size(); i++) {
+
+		AuxPunt ap;
+		ap.nombre = nombres[i];
+		ap.puntos = puntos[i];
+		puntuacionesOrdenadas.push_back(ap);
+	}
+
+	return puntuacionesOrdenadas;
+
+}											  
 inline void Juego::GrabarPartida()
 {
-	System::String^ nombre = "pepe";
-	partida->Grabar(nombre, player);
-
+	partida->Grabar(nombre, player,helicopteros,torretas);
 }
 
 inline void Juego::CargarPartida()
 {
+
+	partida = new PartidaFile();
+
 	partida->CargarPartida();
 
 	player->SetX(partida->getX());
 	player->SetY(partida->getY());
+
+	partida->CargarPartida();
+	
+	LinkedList<Heli*> guardados = partida->getHelicopteros();
+
+	while (!helicopteros.empty())
+		helicopteros.DeleteFirst();
+
+	for (Iterator<Heli*> aux = guardados.Begin(); aux != guardados.End(); aux++)
+	{
+		Heli* e = *aux;
+		helicopteros.AddFirst(e);
+	}
+
+	/*LinkedList<Torreta*> guardadosT = partida->geTorretas();
+
+	while (!torretas.empty())
+		torretas.DeleteFirst();
+
+	for (Iterator<Torreta*> aux = guardadosT.Begin(); aux != guardadosT.End(); aux++)
+	{
+		Torreta* e = *aux;
+		torretas.AddFirst(e);
+	}*/
 
 	pausa = false;
 }
