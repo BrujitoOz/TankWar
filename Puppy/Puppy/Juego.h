@@ -11,6 +11,8 @@
 #include "Bala.h"
 #include "DisparoT.h"
 #include "Explocion.h"
+#include "TVida.h"
+#include "Pillation.h"
 
 #include "PuntuacionFile.h"
 #include "PartidaFile.h"
@@ -25,6 +27,12 @@ class Juego {
 	LinkedList<Torreta*> torretas;
 	LinkedList<DisparoT*> shott;
 	LinkedList<Explocion*> bum;
+	Pillation<TVida*> pila1;
+	Pillation<TVida*> pila2;
+	Pillation<TVida*> pila3;
+	Pillation<TVida*> pila4;
+	Pillation<TVida*> pila5;
+	Pillation<TVida*> pila6;
 
 	int puntos;
 	int vidas = 5;
@@ -38,7 +46,7 @@ public:
 	Juego();
 	~Juego();
 	void Init(Graphics^ g);
-	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum);
+	void Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli, Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum, Image^ imgTV);
 	void Mover_player(direccion movimiento, Graphics^ g);
 	
 	bool Colision(Base* player, Base* disco);
@@ -91,12 +99,82 @@ void Juego::Init(Graphics^ g) {
 		torret->SetEliminar(false);
 		torretas.AddFirst(torret);
 	} 
-
-	
+	TVida* vida1;
+	for (int i = 0; i < 4; i++)
+	{
+		vida1 = new TVida();
+		vida1->SetX(40);
+		vida1->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida1->SetColumnaMax(4);
+		vida1->SetFilaMax(1);
+		vida1->SetIndiceColumna(rand() % 4);
+		vida1->SetEliminar(false);
+		pila1.push(vida1);
+	}
+	TVida* vida2;
+	for (int i = 0; i < 4; i++)
+	{
+		vida2 = new TVida();
+		vida2->SetX(40+300);
+		vida2->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida2->SetColumnaMax(4);
+		vida2->SetFilaMax(1);
+		vida2->SetIndiceColumna(rand() % 4);
+		vida2->SetEliminar(false);
+		pila2.push(vida2);
+	}
+	TVida* vida3;
+	for (int i = 0; i < 4; i++)
+	{
+		vida3 = new TVida();
+		vida3->SetX(40+600);
+		vida3->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida3->SetColumnaMax(4);
+		vida3->SetFilaMax(1);
+		vida3->SetIndiceColumna(rand() % 4);
+		vida3->SetEliminar(false);
+		pila3.push(vida3);
+	}
+	TVida* vida4;
+	for (int i = 0; i < 4; i++)
+	{
+		vida4 = new TVida();
+		vida4->SetX(80+900);
+		vida4->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida4->SetColumnaMax(4);
+		vida4->SetFilaMax(1);
+		vida4->SetIndiceColumna(rand() % 4);
+		vida4->SetEliminar(false);
+		pila4.push(vida4);
+	}
+	TVida* vida5;
+	for (int i = 0; i < 4; i++)
+	{
+		vida5 = new TVida();
+		vida5->SetX(80+1200);
+		vida5->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida5->SetColumnaMax(4);
+		vida5->SetFilaMax(1);
+		vida5->SetIndiceColumna(rand() % 4);
+		vida5->SetEliminar(false);
+		pila5.push(vida5);
+	}
+	TVida* vida6;
+	for (int i = 0; i < 4; i++)
+	{
+		vida6 = new TVida();
+		vida6->SetX(80+1500);
+		vida6->SetY(g->VisibleClipBounds.Bottom - 20);
+		vida6->SetColumnaMax(4);
+		vida6->SetFilaMax(1);
+		vida6->SetIndiceColumna(rand() % 4);
+		vida6->SetEliminar(false);
+		pila6.push(vida6);
+	}
 }
 
 
-void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum) {
+void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,Image^ imgtorret, Image^imgbalas, Image^ imgitems, Image^ imgshut, Image^ imgbum, Image^ imgTV) {
 	g->DrawImage(imgfondo, g->VisibleClipBounds);
 	player->Draw(g, imgplayer, imgbalas);
 
@@ -255,6 +333,7 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		}
 	}
 	int qtd3 = 0;
+	int cont = 0;
 	for (Iterator<Torreta*> aux = torretas.Begin(); aux != torretas.End(); aux++)
 	{
 		Torreta* e = *aux;
@@ -272,32 +351,53 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		if (player->getCurrentBala() != nullptr)
 			if (!e->GetEliminar() && Colision(player->getCurrentBala(), e))
 			{
-				e->SetVidas(e->GetVidas()-1);
-				//puntos++;
-				boom = new Explocion();
-				boom->SetX(e->GetX() + 15);
-				boom->SetY(e->GetY() + 15);
-				boom->SetEliminar(false);
-				boom->SetColumnaMax(8);
-				boom->SetFilaMax(4);
-				boom->SetIndiceFila(player->getCurrentBala()->Retornar_tipo()-1);
-				bum.AddFirst(boom);
-				player->removeCurrentBala();
-
-				//GrabarPuntuacion();
-				if (e->GetVidas() < 0)
+				if ((cont ==5 && player->getCurrentBala()->Retornar_tipo() == pila1.top()->GetIndiceColumna()+1) || 
+					(cont == 4 && player->getCurrentBala()->Retornar_tipo() == pila2.top()->GetIndiceColumna() + 1) ||
+					(cont == 3 && player->getCurrentBala()->Retornar_tipo() == pila3.top()->GetIndiceColumna() + 1) ||
+					(cont == 2 && player->getCurrentBala()->Retornar_tipo() == pila4.top()->GetIndiceColumna() + 1) ||
+					(cont == 1 && player->getCurrentBala()->Retornar_tipo() == pila5.top()->GetIndiceColumna() + 1) ||
+					(cont == 0 && player->getCurrentBala()->Retornar_tipo() == pila6.top()->GetIndiceColumna() + 1) 	)
 				{
-					e->SetEliminar(true);
-					puntos = puntos + 100;
+					e->SetVidas(e->GetVidas() - 1);
+					//puntos++;
+					boom = new Explocion();
+					boom->SetX(e->GetX() + 15);
+					boom->SetY(e->GetY() + 15);
+					boom->SetEliminar(false);
+					boom->SetColumnaMax(8);
+					boom->SetFilaMax(4);
+					if (player->getCurrentBala()->Retornar_tipo() == 4)  boom->SetIndiceFila(1);
+					if (player->getCurrentBala()->Retornar_tipo() == 1)  boom->SetIndiceFila(3);
+					if (player->getCurrentBala()->Retornar_tipo() == 2)  boom->SetIndiceFila(0);
+					if (player->getCurrentBala()->Retornar_tipo() == 3)  boom->SetIndiceFila(2);
+
+					bum.AddFirst(boom);
 					player->removeCurrentBala();
-					GrabarPuntuacion();
+
+					//GrabarPuntuacion();
+					if (e->GetVidas() == 0)
+					{
+						e->SetEliminar(true);
+						puntos = puntos + 1000;
+						player->removeCurrentBala();
+						GrabarPuntuacion();
+
+					}
+					if (cont ==5 )pila1.pop();
+					if (cont == 4 )pila2.pop();
+						if (cont == 3 )pila3.pop();
+							if (cont == 2 )pila4.pop();
+								if (cont == 1) pila5.pop();
+									if (cont == 0 )pila6.pop();
 				}
+
+				
+				
 			}
 		
-
-
 		e->Draw(g, imgtorret);
 		qtd3 = qtd3 + 1;
+		cont = cont + 1;
 	}
 	
 	for (Iterator<Explocion*> aux = bum.Begin(); aux != bum.End(); aux++)
@@ -306,9 +406,13 @@ void Juego::Run(Graphics^ g, Image^ imgplayer, Image^ imgfondo, Image^ imgheli,I
 		e->Draw(g, imgbum);
 			
 	}
-
-
-
+	
+	if (!pila1.empty()) pila1.top()->Draw(g, imgTV);
+	if (!pila2.empty()) pila2.top()->Draw(g, imgTV);
+	if (!pila3.empty()) pila3.top()->Draw(g, imgTV);
+	if (!pila4.empty()) pila4.top()->Draw(g, imgTV);
+	if (!pila5.empty()) pila5.top()->Draw(g, imgTV);
+	if (!pila6.empty()) pila6.top()->Draw(g, imgTV);
 }
 bool Juego::Colision(Base* b1, Base* b2) {
 	Rectangle r1 = Rectangle(b1->GetX(), b1->GetY(), b1->GetL(), b1->GetL());
